@@ -4,6 +4,7 @@ import { defineConfig } from 'vitest/config';
 // https://vitejs.dev/config/
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
+    base: '/home-projects',
     plugins: [react()],
     test: {
         environment: 'jsdom',

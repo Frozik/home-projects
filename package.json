@@ -11,7 +11,9 @@
     "test": "nx run-many -t test --parallel 12",
     "coverage": "nx run-many -t coverage --parallel 12",
     "prebuild": "npm run lint && npm run types && npm run test",
-    "storybook": "nx run-many -t storybook --parallel 12"
+    "storybook": "nx run-many -t storybook --parallel 12",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d apps/playground/dist"
   },
   "workspaces": [
     "apps/**/*",
@@ -66,6 +68,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-unused-imports": "^3.2.0",
+    "gh-pages": "^6.1.1",
     "husky": "^9.1.3",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^24.1.1",
