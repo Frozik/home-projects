@@ -1,0 +1,32 @@
+{
+  "name": "@frozik/components",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "typings": "src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "coverage": "jest --coverage --passWithNoTests",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "types": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@frozik/types": "^0.1.0",
+    "@frozik/utils": "^0.1.0",
+    "antd": "^5.20.2",
+    "classnames": "^2.5.1",
+    "react": "^18.3.1",
+    "react-router-dom": "^6.26.0",
+    "usehooks-ts": "^3.1.0"
+  },
+  "devDependencies": {}
+}

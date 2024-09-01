@@ -1,0 +1,19 @@
+@import "../../colors.scss";
+
+.container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100%;
+
+  margin: 0 auto;
+  min-height: 0;
+  user-select: none;
+
+  @media (max-width: 840px) {
+    padding: 0;
+  }
+}

@@ -1,0 +1,132 @@
+@import "../../../colors.scss";
+
+$field-gap: 4;
+$field-group-gap: 1;
+$field-controls-margin: 10;
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.field {
+  display: inline-grid;
+  gap: #{$field-gap}px;
+  padding: #{$field-gap}px;
+  overflow: hidden;
+  background: $gray-11;
+
+  user-select: none;
+
+  &--completed {
+    background: $green-10;
+    box-shadow: 5px 5px 20px $green-10, -5px -5px 20px $green-10;
+  }
+
+  &-group {
+    display: grid;
+    gap: #{$field-group-gap}px;
+
+    .cell {
+      background: $gray-9;
+      color: $gray-7;
+      display: flex;
+
+      cursor: pointer;
+
+      &.cell-highlight {
+        font-weight: bold;
+        color: $blue-9;
+      }
+
+      &.cell--wrong {
+        color: $red-3;
+      }
+
+      //&.cell--hovered {
+      //  box-shadow: 1px 1px 1px $gray-7, -1px -1px 1px $gray-7;
+      //}
+
+      &--fixed {
+        color: $gray-5;
+
+        cursor: not-allowed;
+
+        &.cell-highlight {
+          color: $blue-10;
+        }
+
+        &.cell--wrong {
+          color: $red-5;
+        }
+      }
+
+      &--value {
+        align-items: center;
+        justify-content: center;
+      }
+
+      &--notes {
+        display: grid;
+        place-items: center;
+      }
+    }
+  }
+}
+
+.controls {
+  margin-top: #{$field-controls-margin}px;
+  display: inline-grid;
+  gap: #{$field-gap}px;
+  padding: #{$field-gap}px;
+  overflow: hidden;
+  background: $gray-11;
+
+  user-select: none;
+
+  .control-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    color: $gray-13;
+    background: $gray-7;
+
+    &:hover {
+      box-shadow: 1px 1px 1px $gray-3, -1px -1px 1px $gray-3;
+    }
+
+    &-notes {
+      display: grid;
+      place-items: center;
+    }
+
+    &--selected {
+      background: $gray-5;
+    }
+
+    &:after {
+      content: attr(data-used);
+
+      font-size: 40%;
+
+      position: absolute;
+
+      top: 2px;
+      right: 2px;
+    }
+  }
+}
+
+:export {
+  var-field-gap: $field-gap;
+  var-field-group-gap: $field-group-gap;
+  var-field-controls-margin: $field-controls-margin;
+}

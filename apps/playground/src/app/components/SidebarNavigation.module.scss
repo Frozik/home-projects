@@ -1,0 +1,34 @@
+.sidebar {
+    width: 200px;
+}
+
+.sidebar-menu {
+    width: 100%;
+    border: none;
+}
+
+.sidebar-menu-opener {
+    bottom: 16px;
+    left: 16px;
+    z-index: 1;
+}
+
+.route-link {
+    display: block;
+}
+
+.route-link--active {
+    pointer-events: none;
+    cursor: default;
+    color: var(--text-color);
+
+    &:before {
+        content: '> ';
+    }
+}
+
+.link-description {
+    margin-left: 20px;
+    padding-left: 8px;
+    border-left: 2px solid rgba(255, 255, 255, 0.45);
+}

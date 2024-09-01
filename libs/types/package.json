@@ -1,0 +1,22 @@
+{
+  "name": "@frozik/types",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "typings": "src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "coverage": "jest --coverage --passWithNoTests",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "types": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
