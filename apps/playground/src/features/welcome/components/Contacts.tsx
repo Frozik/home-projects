@@ -2,6 +2,9 @@ import { GithubOutlined, LinkOutlined, MailOutlined, WhatsAppOutlined } from '@a
 import { Avatar, Button, Tooltip } from 'antd';
 import { memo } from 'react';
 
+import cvUrl from '../../../assets/Sharov_Dmitry_Nikolaevich.pdf';
+import telegramUrl from '../../../assets/telegram-qr.png';
+import whatsupUrl from '../../../assets/whatsup-qr.png';
 import { SvgTelegram } from '../../../icons/SvgTelegram';
 import { getAge } from '../utils';
 import styles from '../Welcome.module.scss';
@@ -13,7 +16,7 @@ export const Contacts = memo(() => (
             <Button
                 type="link"
                 icon={<LinkOutlined />}
-                href="/public/Sharov_Dmitry_Nikolaevich.pdf"
+                href={cvUrl}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -26,9 +29,7 @@ export const Contacts = memo(() => (
         <address className={styles.infoBlock}>
             <ul>
                 <li>
-                    <Tooltip
-                        title={<Avatar shape="square" size={256} src="/public/telegram-qr.png" />}
-                    >
+                    <Tooltip title={<Avatar shape="square" size={256} src={telegramUrl} />}>
                         <a href="https://t.me/Frozik" target="_blank" rel="noreferrer">
                             <SvgTelegram style={{ fill: '#ffffff' }} />
                             @Frozik
@@ -37,9 +38,7 @@ export const Contacts = memo(() => (
                     — preferred means of communication
                 </li>
                 <li>
-                    <Tooltip
-                        title={<Avatar shape="square" size={256} src="/public/whatsup-qr.png" />}
-                    >
+                    <Tooltip title={<Avatar shape="square" size={256} src={whatsupUrl} />}>
                         <a href="https://wa.me/79817151041" target="_blank" rel="noreferrer">
                             <WhatsAppOutlined />
                             Dmitry Sharov

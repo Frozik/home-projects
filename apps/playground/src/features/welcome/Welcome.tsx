@@ -3,6 +3,7 @@ import { Avatar } from 'antd';
 import cn from 'classnames';
 import { memo, useRef } from 'react';
 
+import avatarUrl from '../../assets/avatar.png';
 import { Contacts } from './components/Contacts';
 import { Education } from './components/Education';
 import { Position } from './components/Position';
@@ -25,7 +26,7 @@ export const Welcome = memo(() => {
                 })}
             >
                 <div className={cn(styles.card, styles.cardWithAvatar)}>
-                    <Avatar className={styles.avatar} size={200} src="/public/face.png" />
+                    <Avatar className={styles.avatar} size={200} src={avatarUrl} />
                     <Contacts />
                 </div>
 
