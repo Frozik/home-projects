@@ -11,6 +11,15 @@ export default defineConfig({
         globals: true,
         setupFiles: ['./vitest.setup.ts'],
     },
+    build: {
+        rollupOptions: {
+            output: {
+                entryFileNames: `assets/e-[hash].js`,
+                chunkFileNames: `assets/c-[hash].js`,
+                assetFileNames: `assets/a-[hash].[ext]`,
+            },
+        },
+    },
     css: {
         preprocessorOptions: {
             scss: {
