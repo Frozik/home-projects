@@ -1,5 +1,4 @@
-export { assert } from './assert/assert';
-export { assertNever } from './assert/assertNever';
+export * from './assert';
 
 export { parseJson } from './parseJson';
 export { isProduction } from './isProduction';

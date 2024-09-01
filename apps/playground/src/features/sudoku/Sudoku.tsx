@@ -15,10 +15,12 @@ import {
     applyTool,
     loadPuzzle,
     markField,
-    resetPuzzle, restorePreviousState,
-    selectField, selectHasHistory,
+    resetPuzzle,
+    restorePreviousState,
+    selectField,
+    selectHasHistory,
     selectTool,
-    setTool
+    setTool,
 } from './sudokuSlice';
 
 export const Sudoku = memo(() => {

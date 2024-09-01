@@ -3,7 +3,7 @@ import type { Observable, OperatorFunction } from 'rxjs';
 import { defer, EMPTY, of, timer } from 'rxjs';
 import { filter, map, mergeWith, switchMap } from 'rxjs/operators';
 
-import { assertNever } from '../assert/assertNever';
+import { assertNever } from '../assert';
 
 export enum EBufferEmitType {
     Buffer = 0,
