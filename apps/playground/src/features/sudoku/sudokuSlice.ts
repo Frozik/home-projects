@@ -49,7 +49,11 @@ export const sudokuSlice = createAppSlice({
                 state,
                 { payload: { row, column } }: PayloadAction<{ row: number; column: number }>,
             ) => {
-                if (!isSyncedValueDescriptor(state.field) || state.field.value.size === 0) {
+                if (
+                    !isSyncedValueDescriptor(state.field) ||
+                    state.field.value.size === 0 ||
+                    state.tool.type === EToolType.None
+                ) {
                     return;
                 }
 

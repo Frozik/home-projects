@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import { OverlayLoader } from '../../components/OverlayLoader';
 import { createInjectorLoader } from './createInjectorLoader';
@@ -7,7 +7,7 @@ import { ErrorPage } from './ErrorPage';
 import { PageInjector } from './PageInjector';
 import { Root } from './Root';
 
-const rootRouter = createBrowserRouter(
+const rootRouter = createHashRouter(
     [
         {
             path: '/',
@@ -63,9 +63,9 @@ const rootRouter = createBrowserRouter(
             ],
         },
     ],
-    {
-        basename: import.meta.env.BASE_URL,
-    },
+    // {
+    //     basename: import.meta.env.BASE_URL,
+    // },
 );
 
 export const Application = memo(() => {

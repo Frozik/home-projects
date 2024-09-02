@@ -25,10 +25,6 @@ function bootstrap() {
 
     const root = createRoot(container);
 
-    // TODO: https://github.com/rafgraph/spa-github-pages/blob/gh-pages/404.html#L25
-    // TODO: https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
-    // TODO: Pendulum doesn't work in Safari
-
     root.render(
         <StrictMode>
             <Provider store={store}>

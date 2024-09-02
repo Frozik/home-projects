@@ -41,7 +41,7 @@ $field-controls-margin: 10;
 
       &.cell-highlight {
         font-weight: bold;
-        color: $blue-3;
+        color: $blue-6;
       }
 
       &.cell--wrong {
@@ -54,7 +54,7 @@ $field-controls-margin: 10;
         cursor: not-allowed;
 
         &.cell-highlight {
-          color: $blue-2;
+          color: $blue-5;
         }
 
         &.cell--wrong {
@@ -72,7 +72,7 @@ $field-controls-margin: 10;
         place-items: center;
 
         .note--selected {
-          color: $blue-1;
+          color: $blue-6;
         }
       }
     }
