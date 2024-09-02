@@ -187,6 +187,12 @@ async function getCompetitions(database: IDBPDatabase<IDBCompetitions>): Promise
     const competitionIdIndex = transaction
         .objectStore(GENERATIONS_TABLE_NAME)
         .index(GENERATION_COMPETITION_START_INDEX);
+
+    // Workaround for Safari https://github.com/dexie/Dexie.js/issues/1052
+    if ((await competitionIdIndex.count()) === 0) {
+        return [];
+    }
+
     let cursor = await competitionIdIndex.openCursor(null, 'prevunique');
 
     const competitionsStarts: ISO[] = [];
