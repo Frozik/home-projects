@@ -3,10 +3,11 @@ import type { ISO } from '@frozik/types';
 import {
     createSyncedValueDescriptor,
     EMPTY_VD,
+    isEmptyValueDescriptor,
     isFailValueDescriptor,
     isLoadingValueDescriptor,
     isSyncedValueDescriptor,
-    isUnsyncedValueDescriptor,
+    isWaitingArgumentsValueDescriptor,
     matchValueDescriptor,
 } from '@frozik/utils';
 import type { TableColumnsType } from 'antd';
@@ -142,10 +143,12 @@ export const GenerationsList = memo(() => {
           ? currentCompetition.fail
           : undefined;
 
-    const unsyncedNotFailValueDescriptor =
+    const showCompetitionsSelector =
         isNil(failValueDescriptor) &&
-        (isUnsyncedValueDescriptor(currentCompetition) ||
-            isUnsyncedValueDescriptor(competitionsList));
+        (isLoadingValueDescriptor(currentCompetition) ||
+            isWaitingArgumentsValueDescriptor(currentCompetition) ||
+            isLoadingValueDescriptor(competitionsList) ||
+            isWaitingArgumentsValueDescriptor(competitionsList));
 
     return (
         <div ref={ref} className={styles.container}>
@@ -160,7 +163,7 @@ export const GenerationsList = memo(() => {
                 </div>
             )}
 
-            {unsyncedNotFailValueDescriptor && (
+            {showCompetitionsSelector && (
                 <List
                     className={styles.list}
                     loading={
@@ -196,8 +199,10 @@ export const GenerationsList = memo(() => {
                 />
             )}
 
-            {isSyncedValueDescriptor(currentCompetition) &&
-                isSyncedValueDescriptor(competitionsList) && (
+            {(isSyncedValueDescriptor(currentCompetition) ||
+                isEmptyValueDescriptor(currentCompetition)) &&
+                (isSyncedValueDescriptor(competitionsList) ||
+                    isEmptyValueDescriptor(competitionsList)) && (
                     <Table
                         virtual
                         className={styles.grid}
