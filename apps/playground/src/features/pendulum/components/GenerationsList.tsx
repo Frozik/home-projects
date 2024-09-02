@@ -6,6 +6,7 @@ import {
     isFailValueDescriptor,
     isLoadingValueDescriptor,
     isSyncedValueDescriptor,
+    isUnsyncedValueDescriptor,
     matchValueDescriptor,
 } from '@frozik/utils';
 import type { TableColumnsType } from 'antd';
@@ -135,10 +136,68 @@ export const GenerationsList = memo(() => {
         [generations],
     );
 
+    const failValueDescriptor = isFailValueDescriptor(competitionsList)
+        ? competitionsList.fail
+        : isFailValueDescriptor(currentCompetition)
+          ? currentCompetition.fail
+          : undefined;
+
+    const unsyncedNotFailValueDescriptor =
+        isNil(failValueDescriptor) &&
+        (isUnsyncedValueDescriptor(currentCompetition) ||
+            isUnsyncedValueDescriptor(competitionsList));
+
     return (
         <div ref={ref} className={styles.container}>
-            {matchValueDescriptor(currentCompetition, {
-                synced: () => (
+            {!isNil(failValueDescriptor) && (
+                <div className={commonStyles.alertContainer}>
+                    <Alert
+                        message={failValueDescriptor.meta.message}
+                        description={failValueDescriptor.meta.description}
+                        type="error"
+                        showIcon
+                    />
+                </div>
+            )}
+
+            {unsyncedNotFailValueDescriptor && (
+                <List
+                    className={styles.list}
+                    loading={
+                        isLoadingValueDescriptor(competitionsList) ||
+                        isLoadingValueDescriptor(currentCompetition)
+                    }
+                    itemLayout="horizontal"
+                    dataSource={competitionsDataSource}
+                    renderItem={(startDate) => (
+                        <List.Item>
+                            <Button
+                                key="start"
+                                type="link"
+                                size="small"
+                                onClick={() =>
+                                    handleContinueCompetition(
+                                        startDate === 'new' ? undefined : startDate,
+                                    )
+                                }
+                            >
+                                {startDate === 'new'
+                                    ? 'Create New'
+                                    : `Continue with ${new Date(startDate).toLocaleString('ru-RU', {
+                                          year: 'numeric',
+                                          month: '2-digit',
+                                          day: '2-digit',
+                                          hour: '2-digit',
+                                          minute: '2-digit',
+                                      })}`}
+                            </Button>
+                        </List.Item>
+                    )}
+                />
+            )}
+
+            {isSyncedValueDescriptor(currentCompetition) &&
+                isSyncedValueDescriptor(competitionsList) && (
                     <Table
                         virtual
                         className={styles.grid}
@@ -148,56 +207,7 @@ export const GenerationsList = memo(() => {
                         bordered
                         scroll={{ x: Math.ceil(width), y: Math.ceil(height - 56) }}
                     />
-                ),
-                unsynced: (vd) =>
-                    isFailValueDescriptor(vd) ? (
-                        <div className={commonStyles.alertContainer}>
-                            <Alert
-                                message={vd.fail.meta.message}
-                                description={vd.fail.meta.description}
-                                type="error"
-                                showIcon
-                            />
-                        </div>
-                    ) : (
-                        <List
-                            className={styles.list}
-                            loading={
-                                isLoadingValueDescriptor(competitionsList) ||
-                                isLoadingValueDescriptor(vd)
-                            }
-                            itemLayout="horizontal"
-                            dataSource={competitionsDataSource}
-                            renderItem={(startDate) => (
-                                <List.Item>
-                                    <Button
-                                        key="start"
-                                        type="link"
-                                        size="small"
-                                        onClick={() =>
-                                            handleContinueCompetition(
-                                                startDate === 'new' ? undefined : startDate,
-                                            )
-                                        }
-                                    >
-                                        {startDate === 'new'
-                                            ? 'Create New'
-                                            : `Continue with ${new Date(startDate).toLocaleString(
-                                                  'ru-RU',
-                                                  {
-                                                      year: 'numeric',
-                                                      month: '2-digit',
-                                                      day: '2-digit',
-                                                      hour: '2-digit',
-                                                      minute: '2-digit',
-                                                  },
-                                              )}`}
-                                    </Button>
-                                </List.Item>
-                            )}
-                        />
-                    ),
-            })}
+                )}
         </div>
     );
 });
