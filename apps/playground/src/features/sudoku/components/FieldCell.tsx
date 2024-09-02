@@ -78,17 +78,24 @@ export const FieldCell = memo(
                 onClick={handleClick}
             >
                 {isNil(cell.value)
-                    ? getPairs(field.size).map(([row, column], index) => (
-                          <div
-                              key={index}
-                              style={{
-                                  gridColumn: column + 1,
-                                  gridRow: row + 1,
-                              }}
-                          >
-                              {notes.includes(index + 1) ? index + 1 : undefined}
-                          </div>
-                      ))
+                    ? getPairs(field.size).map(([row, column], index) => {
+                          const noteValue = index + 1;
+
+                          return (
+                              <div
+                                  key={noteValue}
+                                  className={cn({
+                                      [styles.noteSelected]: noteValue === tool.value,
+                                  })}
+                                  style={{
+                                      gridColumn: column + 1,
+                                      gridRow: row + 1,
+                                  }}
+                              >
+                                  {notes.includes(noteValue) ? noteValue : undefined}
+                              </div>
+                          );
+                      })
                     : value}
             </div>
         );
