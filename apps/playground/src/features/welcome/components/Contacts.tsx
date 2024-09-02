@@ -6,8 +6,8 @@ import cvUrl from '../../../assets/Sharov_Dmitry_Nikolaevich.pdf';
 import telegramUrl from '../../../assets/telegram-qr.png';
 import whatsupUrl from '../../../assets/whatsup-qr.png';
 import { SvgTelegram } from '../../../icons/SvgTelegram';
+import styles from '../styles.module.scss';
 import { getAge } from '../utils';
-import styles from '../Welcome.module.scss';
 
 export const Contacts = memo(() => (
     <div>

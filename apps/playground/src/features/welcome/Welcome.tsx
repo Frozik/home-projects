@@ -9,7 +9,7 @@ import { Education } from './components/Education';
 import { Position } from './components/Position';
 import { Skills } from './components/Skills';
 import { WorkExperience } from './components/WorkExperience';
-import styles from './Welcome.module.scss';
+import styles from './styles.module.scss';
 
 export const Welcome = memo(() => {
     const cvRef = useRef<HTMLDivElement>(null);

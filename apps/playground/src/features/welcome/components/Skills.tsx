@@ -2,14 +2,14 @@ import { Flex, Tag } from 'antd';
 import cn from 'classnames';
 import { memo } from 'react';
 
-import styles from '../Welcome.module.scss';
+import styles from '../styles.module.scss';
 
 export const Skills = memo(() => (
     <>
         <h2 className={styles.cardTitle}>Key skills</h2>
         <section className={cn(styles.card, styles.cardWithTitle, styles.cardWithRowMode)}>
             <div className={styles.flexStretch}>
-                <Flex gap="4px 0" wrap>
+                <Flex className={styles.skillsBlock} gap="4px" wrap>
                     <Tag color="magenta" bordered={false}>
                         JavaScript
                     </Tag>

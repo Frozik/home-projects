@@ -5,9 +5,8 @@ import { isEmpty, isNil } from 'lodash-es';
 import type { ReactNode } from 'react';
 import { memo } from 'react';
 
+import styles from '../styles.module.scss';
 import { formatDateMonthYear, measureDuration } from '../utils';
-import commonStyles from '../Welcome.module.scss';
-import styles from './WorkExperience.module.scss';
 
 interface IWork {
     start: Temporal.PlainDate;
@@ -557,16 +556,10 @@ const SMALLEST_START_DATE = EMPLOYMENT_HISTORY.reduce(
 export const WorkExperience = memo(() => {
     return (
         <>
-            <h2 className={commonStyles.cardTitle}>
+            <h2 className={styles.cardTitle}>
                 Work experience — {measureDuration(SMALLEST_START_DATE)}
             </h2>
-            <section
-                className={cn(
-                    commonStyles.card,
-                    commonStyles.cardWithTitle,
-                    commonStyles.cardWithScroll,
-                )}
-            >
+            <section className={cn(styles.card, styles.cardWithTitle)}>
                 {EMPLOYMENT_HISTORY.map((work, index) => (
                     <article className={styles.employer} key={index}>
                         <div className={styles.companyContainer}>

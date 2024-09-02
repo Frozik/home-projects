@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { memo } from 'react';
 
-import styles from '../Welcome.module.scss';
+import styles from '../styles.module.scss';
 
 export const Position = memo(() => (
     <>
