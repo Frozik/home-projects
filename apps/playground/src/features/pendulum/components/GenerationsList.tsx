@@ -3,28 +3,28 @@ import type { ISO } from '@frozik/types';
 import {
     createSyncedValueDescriptor,
     EMPTY_VD,
-    isEmptyValueDescriptor,
     isFailValueDescriptor,
     isLoadingValueDescriptor,
     isSyncedValueDescriptor,
+    isSyncOrEmptyValueDescriptor,
     isWaitingArgumentsValueDescriptor,
     matchValueDescriptor,
 } from '@frozik/utils';
 import type { TableColumnsType } from 'antd';
-import { Alert, Badge, Button, List, Table, Tag } from 'antd';
+import { Badge, Button, List, Table, Tag } from 'antd';
 import { isNil } from 'lodash-es';
 import { memo, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useResizeObserver } from 'usehooks-ts';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { ValueDescriptorFail } from '../../../components/ValueDescriptorFail';
 import {
     loadCompetition,
     selectCompetitionsList,
     selectCurrentCompetition,
     setCurrentCompetition,
 } from '../pendulumSlice';
-import commonStyles from './common.module.scss';
 import styles from './GenerationsList.module.scss';
 
 type TFixedType = 'left' | 'right' | undefined;
@@ -137,33 +137,17 @@ export const GenerationsList = memo(() => {
         [generations],
     );
 
-    const failValueDescriptor = isFailValueDescriptor(competitionsList)
-        ? competitionsList.fail
-        : isFailValueDescriptor(currentCompetition)
-          ? currentCompetition.fail
-          : undefined;
-
-    const showCompetitionsSelector =
-        isNil(failValueDescriptor) &&
-        (isLoadingValueDescriptor(currentCompetition) ||
-            isWaitingArgumentsValueDescriptor(currentCompetition) ||
-            isLoadingValueDescriptor(competitionsList) ||
-            isWaitingArgumentsValueDescriptor(competitionsList));
-
     return (
         <div ref={ref} className={styles.container}>
-            {!isNil(failValueDescriptor) && (
-                <div className={commonStyles.alertContainer}>
-                    <Alert
-                        message={failValueDescriptor.meta.message}
-                        description={failValueDescriptor.meta.description}
-                        type="error"
-                        showIcon
-                    />
-                </div>
+            {(isFailValueDescriptor(competitionsList) ||
+                isFailValueDescriptor(currentCompetition)) && (
+                <ValueDescriptorFail fail={competitionsList.fail ?? currentCompetition.fail!} />
             )}
 
-            {showCompetitionsSelector && (
+            {(isLoadingValueDescriptor(currentCompetition) ||
+                isWaitingArgumentsValueDescriptor(currentCompetition) ||
+                isLoadingValueDescriptor(competitionsList) ||
+                isWaitingArgumentsValueDescriptor(competitionsList)) && (
                 <List
                     className={styles.list}
                     loading={
@@ -199,10 +183,8 @@ export const GenerationsList = memo(() => {
                 />
             )}
 
-            {(isSyncedValueDescriptor(currentCompetition) ||
-                isEmptyValueDescriptor(currentCompetition)) &&
-                (isSyncedValueDescriptor(competitionsList) ||
-                    isEmptyValueDescriptor(competitionsList)) && (
+            {isSyncOrEmptyValueDescriptor(currentCompetition) &&
+                isSyncOrEmptyValueDescriptor(competitionsList) && (
                     <Table
                         virtual
                         className={styles.grid}

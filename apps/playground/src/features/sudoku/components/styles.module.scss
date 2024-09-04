@@ -46,6 +46,7 @@ $field-controls-margin: 10;
 
       &.cell--wrong {
         color: $red-3;
+        text-shadow: 0 0 10px $gray-13;
       }
 
       &--fixed {
@@ -55,10 +56,12 @@ $field-controls-margin: 10;
 
         &.cell-highlight {
           color: $blue-5;
+          text-shadow: 0 0 10px $gray-13;
         }
 
         &.cell--wrong {
           color: $red-5;
+          text-shadow: 0 0 10px $gray-13;
         }
       }
 
@@ -73,6 +76,7 @@ $field-controls-margin: 10;
 
         .note--selected {
           color: $blue-6;
+          text-shadow: 0 0 5px $gray-13;
         }
       }
     }
@@ -121,6 +125,8 @@ $field-controls-margin: 10;
 
       top: 2px;
       right: 2px;
+
+      text-shadow: 0 0 5px $gray-1, 0 0 10px $gray-1;
     }
   }
 }

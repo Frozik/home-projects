@@ -195,6 +195,12 @@ export function isLoadingValueDescriptor(vd: Nil | TAnyValueDescriptor): boolean
     return isRequestingValueDescriptor(vd) || isReceivingValueDescriptor(vd);
 }
 
+export function isSyncOrEmptyValueDescriptor<VD extends TAnyValueDescriptor>(
+    value: Nil | VD,
+): boolean {
+    return isSyncedValueDescriptor(value) || isEmptyValueDescriptor(value);
+}
+
 export function isFailValueDescriptor<T extends TAnyValueDescriptor>(
     vd: Nil | T,
 ): vd is T & { fail: TValueDescriptorFail } {

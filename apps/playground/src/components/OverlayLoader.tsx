@@ -1,7 +1,7 @@
 import { Spin } from 'antd';
 import { memo } from 'react';
 
-import styles from './OverlayLoader.module.scss';
+import styles from './styles.module.scss';
 
 export const OverlayLoader = memo(() => (
     <div className={styles.container}>

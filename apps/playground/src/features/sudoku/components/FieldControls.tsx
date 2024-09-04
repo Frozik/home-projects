@@ -141,7 +141,7 @@ export const FieldControls = memo(
                     style={{
                         ...baseStyle,
                         gridTemplateColumns: `repeat(${field.size}, ${cellSize}px)`,
-                        gridColumn: 3,
+                        gridColumn: field.size,
                         gridRow: 2,
                     }}
                 >
@@ -153,7 +153,7 @@ export const FieldControls = memo(
                             width: cellSize,
                             height: cellSize,
                             fontSize: toolType === EToolType.Notes ? thirdCellSize : cellSize,
-                            gridColumn: 2,
+                            gridColumn: field.size - 1,
                         }}
                         onClick={handleToggleToolType}
                     >
@@ -166,7 +166,7 @@ export const FieldControls = memo(
                             fontSize: `${thirdCellSize}px`,
                             gridTemplateColumns: `repeat(${field.size}, ${thirdCellSize}px)`,
                             gridTemplateRows: `repeat(${field.size}, ${thirdCellSize}px)`,
-                            gridColumn: 3,
+                            gridColumn: field.size,
                         }}
                     >
                         {getPairs(field.size).map(([row, column], index) => (

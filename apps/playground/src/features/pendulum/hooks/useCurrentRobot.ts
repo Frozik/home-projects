@@ -34,7 +34,8 @@ export function useCurrentRobot(): TValueDescriptor<TensorflowPlayer> {
                           isNil(robot)
                               ? createUnsyncedValueDescriptor(
                                     Fail(EValueDescriptorErrorCode.NOT_FOUND, {
-                                        message: `Robot "${robotId}" not found`,
+                                        message: `Robot not found`,
+                                        description: `Robot "${robotId}" not found in database, try selecting another robot`,
                                     }),
                                 )
                               : createSyncedValueDescriptor(robot),

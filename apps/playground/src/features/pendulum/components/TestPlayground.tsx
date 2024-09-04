@@ -7,13 +7,13 @@ import {
     isSyncedValueDescriptor,
     matchValueDescriptor,
 } from '@frozik/utils';
-import { Alert } from 'antd';
 import { isNil } from 'lodash-es';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { OverlayLoader } from '../../../components/OverlayLoader';
+import { ValueDescriptorFail } from '../../../components/ValueDescriptorFail';
 import { EPlayerType } from '../../../libs/pendulum/def';
 import { HumanPlayer } from '../../../libs/pendulum/players/HumanPlayer';
 import { useCurrentRobot } from '../hooks/useCurrentRobot';
@@ -83,16 +83,7 @@ export const TestPlayground = memo(() => {
             </div>
         );
     } else if (isFailValueDescriptor(playerVD)) {
-        return (
-            <div className={commonStyles.alertContainer}>
-                <Alert
-                    message={playerVD.fail.meta.message}
-                    description={playerVD.fail.meta.description}
-                    type="error"
-                    showIcon
-                />
-            </div>
-        );
+        return <ValueDescriptorFail fail={playerVD.fail} />;
     }
 
     return (

@@ -5,6 +5,7 @@ import { isNil } from 'lodash-es';
 import { memo, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { ValueDescriptorFail } from '../../../components/ValueDescriptorFail';
 import { useCompetition } from '../hooks/useCompetition';
 import { useFrameTicker } from '../hooks/useFrameTicker';
 import { usePlayground } from '../hooks/usePlayground';
@@ -66,12 +67,7 @@ export const FitnessPlayground = memo(() => {
         unsynced: (vd) => (
             <div className={commonStyles.alertContainer}>
                 {isFailValueDescriptor(vd) ? (
-                    <Alert
-                        message={vd.fail.meta.message ?? 'Unknown error'}
-                        description={vd.fail.meta.description}
-                        type="error"
-                        showIcon
-                    />
+                    <ValueDescriptorFail fail={vd.fail} />
                 ) : (
                     <Alert
                         message="Competition not started"

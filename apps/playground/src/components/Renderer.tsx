@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { isNil } from 'lodash-es';
 import { memo, useEffect, useRef } from 'react';
 
-import styles from './Renderer.module.scss';
+import styles from './styles.module.scss';
 
 export const Renderer = memo(
     ({

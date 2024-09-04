@@ -1,5 +1,5 @@
 import { useFunction } from '@frozik/components';
-import { matchValueDescriptor } from '@frozik/utils';
+import { isFailValueDescriptor, matchValueDescriptor } from '@frozik/utils';
 import type { RadioChangeEvent } from 'antd';
 import { Radio } from 'antd';
 import { isNil } from 'lodash-es';
@@ -8,6 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getSudoku } from 'sudoku-gen';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { ValueDescriptorFail } from '../../components/ValueDescriptorFail';
 import { SudokuField } from './components/SudokuField';
 import type { TTool } from './defs';
 import styles from './Sudoku.module.scss';
@@ -73,14 +74,17 @@ export const Sudoku = memo(() => {
                         onRestartGame={handleRestartGame}
                     />
                 ),
-                unsynced: () => (
-                    <Radio.Group value="large" onChange={handleSelectPuzzleDifficulty}>
-                        <Radio.Button value="easy">Easy</Radio.Button>
-                        <Radio.Button value="medium">Medium</Radio.Button>
-                        <Radio.Button value="hard">Hard</Radio.Button>
-                        <Radio.Button value="expert">Expert</Radio.Button>
-                    </Radio.Group>
-                ),
+                unsynced: (vd) =>
+                    isFailValueDescriptor(vd) ? (
+                        <ValueDescriptorFail fail={vd.fail} />
+                    ) : (
+                        <Radio.Group value="large" onChange={handleSelectPuzzleDifficulty}>
+                            <Radio.Button value="easy">Easy</Radio.Button>
+                            <Radio.Button value="medium">Medium</Radio.Button>
+                            <Radio.Button value="hard">Hard</Radio.Button>
+                            <Radio.Button value="expert">Expert</Radio.Button>
+                        </Radio.Group>
+                    ),
             })}
         </div>
     );

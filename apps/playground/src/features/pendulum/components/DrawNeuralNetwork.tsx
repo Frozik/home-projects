@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useResizeObserver } from 'usehooks-ts';
 
 import { OverlayLoader } from '../../../components/OverlayLoader';
+import { ValueDescriptorFail } from '../../../components/ValueDescriptorFail';
 import type {
     IAxonDescriptor,
     INeuronDescriptor,
@@ -410,16 +411,7 @@ export const DrawNeuralNetwork = memo(() => {
                             </div>
                         );
                     } else if (isFailValueDescriptor(vd)) {
-                        return (
-                            <div className={commonStyles.alertContainer}>
-                                <Alert
-                                    message={vd.fail.meta.message}
-                                    description={vd.fail.meta.description}
-                                    type="error"
-                                    showIcon
-                                />
-                            </div>
-                        );
+                        return <ValueDescriptorFail fail={vd.fail} />;
                     } else {
                         return (
                             <div className={commonStyles.alertContainer}>

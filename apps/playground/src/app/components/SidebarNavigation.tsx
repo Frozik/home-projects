@@ -51,7 +51,10 @@ export const SidebarNavigation = memo(() => {
                     size="large"
                     exactMatch={false}
                 >
-                    Pendulum <Tag color="purple">Rich UI</Tag>
+                    Pendulum
+                    <Tag className={styles.notForMobileMarker} color="red">
+                        Not for Mobile
+                    </Tag>
                 </RouteNavLink>
                 <p className={styles.linkDescription}>
                     The genetic algorithm generates and selects neural networks designed to tackle

@@ -14,10 +14,11 @@ import { ECellStatus, EFieldType, EToolType } from './defs';
 export function loadField(fieldData: string): TValueDescriptor<IField> {
     const size = Math.round(Math.pow(fieldData.length, 0.25));
 
-    if (size === 0) {
+    if (size < 3) {
         return createUnsyncedValueDescriptor(
             Fail(EValueDescriptorErrorCode.OUT_OF_RANGE, {
-                message: 'Field size is empty',
+                message: 'Field size is not supported',
+                description: `Field size is empty or less then 9x9, current size: ${size}x${size}`,
             }),
         );
     }
@@ -26,6 +27,7 @@ export function loadField(fieldData: string): TValueDescriptor<IField> {
         return createUnsyncedValueDescriptor(
             Fail(EValueDescriptorErrorCode.OUT_OF_RANGE, {
                 message: 'Field size is invalid',
+                description: `Field cell count must be a perfect square, current cells count: ${fieldData.length}`,
             }),
         );
     }
@@ -49,7 +51,20 @@ export function loadField(fieldData: string): TValueDescriptor<IField> {
                   };
         });
 
-        return createSyncedValueDescriptor({ size, cells });
+        const validatedField = validateField({ size, cells });
+
+        for (let row = 0; row < validatedField.size ** 2; row++) {
+            for (let column = 0; column < validatedField.size ** 2; column++) {
+                const index = getIndex(row, column, validatedField.size);
+                const cell = validatedField.cells[index];
+
+                if (cell.status === ECellStatus.Wrong && cell.type === EFieldType.Fixed) {
+                    cell.type = EFieldType.Guess;
+                }
+            }
+        }
+
+        return createSyncedValueDescriptor(validatedField);
     } catch (error) {
         return createUnsyncedValueDescriptor(convertErrorToFail(error as Error));
     }
