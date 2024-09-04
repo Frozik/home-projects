@@ -17,6 +17,7 @@ import {
     loadPuzzle,
     markField,
     resetPuzzle,
+    restartPuzzle,
     restorePreviousState,
     selectField,
     selectHasHistory,
@@ -59,6 +60,8 @@ export const Sudoku = memo(() => {
 
     const handleRestorePreviousState = useFunction(() => dispatch(restorePreviousState()));
 
+    const handleRestartPuzzle = useFunction(() => dispatch(restartPuzzle()));
+
     return (
         <div className={styles.container}>
             {matchValueDescriptor(field, {
@@ -71,7 +74,8 @@ export const Sudoku = memo(() => {
                         onClickCell={handleClickCell}
                         onChangeTool={handleToolSelect}
                         onMarkField={handleMarkField}
-                        onRestartGame={handleRestartGame}
+                        onExitGame={handleRestartGame}
+                        onRestartGame={handleRestartPuzzle}
                     />
                 ),
                 unsynced: (vd) =>

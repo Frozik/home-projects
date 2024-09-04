@@ -20,6 +20,7 @@ export const SudokuField = memo(
         onClickCell,
         onChangeTool,
         onMarkField,
+        onExitGame,
         onRestartGame,
     }: {
         field: IField;
@@ -29,6 +30,7 @@ export const SudokuField = memo(
         onClickCell: (row: number, column: number) => void;
         onChangeTool: (tool: TTool) => void;
         onMarkField: VoidFunction;
+        onExitGame: VoidFunction;
         onRestartGame: VoidFunction;
     }) => {
         const ref = useRef<HTMLDivElement>(null);
@@ -114,6 +116,7 @@ export const SudokuField = memo(
                     onRestorePreviousState={onRestorePreviousState}
                     onChangeTool={onChangeTool}
                     onMarkField={onMarkField}
+                    onExitGame={onExitGame}
                     onRestartGame={onRestartGame}
                 />
             </div>

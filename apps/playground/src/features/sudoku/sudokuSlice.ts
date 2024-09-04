@@ -6,7 +6,14 @@ import { cloneDeep, isNil } from 'lodash-es';
 import { createAppSlice } from '../../app/createAppSlice';
 import type { IField, TTool } from './defs';
 import { EToolType } from './defs';
-import { addFieldMarks, applyToolToFieldReducer, loadField } from './utils';
+import {
+    addFieldMarks,
+    applyToolToFieldReducer,
+    cleanPuzzle,
+    hasMarks,
+    loadField,
+    removeFieldMarks,
+} from './utils';
 
 export interface ISudokuSliceState {
     field: TValueDescriptor<IField>;
@@ -26,6 +33,14 @@ export const sudokuSlice = createAppSlice({
     reducers: (create) => ({
         resetPuzzle: create.reducer((state) => {
             state.field = EMPTY_VD;
+            state.history = [];
+        }),
+        restartPuzzle: create.reducer((state) => {
+            if (!isSyncedValueDescriptor(state.field)) {
+                return;
+            }
+
+            state.field = createSyncedValueDescriptor(cleanPuzzle(state.field.value));
             state.history = [];
         }),
         loadPuzzle: create.reducer((state, { payload }: PayloadAction<string>) => {
@@ -71,7 +86,11 @@ export const sudokuSlice = createAppSlice({
 
             state.history = [...state.history, cloneDeep(state.field.value)];
 
-            state.field = createSyncedValueDescriptor(addFieldMarks(state.field.value));
+            if (hasMarks(state.field.value)) {
+                state.field = createSyncedValueDescriptor(removeFieldMarks(state.field.value));
+            } else {
+                state.field = createSyncedValueDescriptor(addFieldMarks(state.field.value));
+            }
         }),
         restorePreviousState: create.reducer((state) => {
             const previousState = state.history.pop();
@@ -90,7 +109,14 @@ export const sudokuSlice = createAppSlice({
     },
 });
 
-export const { resetPuzzle, loadPuzzle, setTool, applyTool, markField, restorePreviousState } =
-    sudokuSlice.actions;
+export const {
+    resetPuzzle,
+    restartPuzzle,
+    loadPuzzle,
+    setTool,
+    applyTool,
+    markField,
+    restorePreviousState,
+} = sudokuSlice.actions;
 
 export const { selectField, selectTool, selectHasHistory } = sudokuSlice.selectors;

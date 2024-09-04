@@ -6,7 +6,7 @@ import {
     EValueDescriptorErrorCode,
     Fail,
 } from '@frozik/utils';
-import { isNil } from 'lodash-es';
+import { isEmpty, isNil } from 'lodash-es';
 
 import type { IField, IFieldCell, TTool } from './defs';
 import { ECellStatus, EFieldType, EToolType } from './defs';
@@ -286,4 +286,60 @@ export function puzzleSolved(field: IField): boolean {
     }
 
     return true;
+}
+
+export function cleanPuzzle(field: IField): IField {
+    const cells = [...field.cells];
+
+    for (let index = 0; index < field.size ** 4; index++) {
+        const cell = field.cells[index];
+
+        if (cell.type === EFieldType.Fixed) {
+            cells[index] = {
+                ...cell,
+                status: ECellStatus.Unknown,
+            };
+        } else {
+            cells[index] = {
+                ...cell,
+                notes: [],
+                value: undefined,
+                status: ECellStatus.Unknown,
+            };
+        }
+    }
+
+    return { ...field, cells };
+}
+
+export function hasMarks(field: IField): boolean {
+    for (let index = 0; index < field.size ** 4; index++) {
+        const cell = field.cells[index];
+
+        if (cell.type === EFieldType.Fixed) {
+            continue;
+        }
+
+        if (!isEmpty(cell.notes)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+export function removeFieldMarks(field: IField): IField {
+    const cells = [...field.cells];
+
+    for (let index = 0; index < field.size ** 4; index++) {
+        const cell = field.cells[index];
+
+        if (cell.type === EFieldType.Fixed || isEmpty(cell.notes)) {
+            continue;
+        }
+
+        cells[index] = { ...cell, notes: [] };
+    }
+
+    return { ...field, cells };
 }

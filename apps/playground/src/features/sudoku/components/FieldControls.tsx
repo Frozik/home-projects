@@ -1,4 +1,4 @@
-import { FormOutlined, MenuOutlined, RollbackOutlined } from '@ant-design/icons';
+import { ClearOutlined, FormOutlined, MenuOutlined, RollbackOutlined } from '@ant-design/icons';
 import { useFunction } from '@frozik/components';
 import cn from 'classnames';
 import { isNil } from 'lodash-es';
@@ -6,7 +6,7 @@ import { memo, useMemo, useState } from 'react';
 
 import type { IField, TTool } from '../defs';
 import { EToolType } from '../defs';
-import { getIndexesArray, getPairs, getUsedNumbers } from '../utils';
+import { getIndexesArray, getPairs, getUsedNumbers, hasMarks } from '../utils';
 import styles from './styles.module.scss';
 
 export const FieldControls = memo(
@@ -18,6 +18,7 @@ export const FieldControls = memo(
         onRestorePreviousState,
         onChangeTool,
         onMarkField,
+        onExitGame,
         onRestartGame,
     }: {
         field: IField;
@@ -27,6 +28,7 @@ export const FieldControls = memo(
         onRestorePreviousState: VoidFunction;
         onChangeTool: (tool: TTool) => void;
         onMarkField: VoidFunction;
+        onExitGame: VoidFunction;
         onRestartGame: VoidFunction;
     }) => {
         const [toolType, setToolType] = useState<EToolType.Pen | EToolType.Notes>(
@@ -64,6 +66,8 @@ export const FieldControls = memo(
         };
 
         const thirdCellSize = Math.trunc(cellSize / 3);
+
+        const marksSelected = useMemo(() => hasMarks(field), [field]);
 
         return (
             <div className={styles.controls}>
@@ -117,9 +121,20 @@ export const FieldControls = memo(
                             ...baseStyle,
                             gridColumn: 1,
                         }}
-                        onClick={onRestartGame}
+                        onClick={onExitGame}
                     >
                         <MenuOutlined />
+                    </div>
+
+                    <div
+                        className={styles.controlItem}
+                        style={{
+                            ...baseStyle,
+                            gridColumn: 2,
+                        }}
+                        onClick={onRestartGame}
+                    >
+                        <ClearOutlined />
                     </div>
 
                     {hasHistory && (
@@ -127,7 +142,7 @@ export const FieldControls = memo(
                             className={styles.controlItem}
                             style={{
                                 ...baseStyle,
-                                gridColumn: 2,
+                                gridColumn: 3,
                             }}
                             onClick={onRestorePreviousState}
                         >
@@ -161,7 +176,9 @@ export const FieldControls = memo(
                     </div>
 
                     <div
-                        className={cn(styles.controlItem, styles.controlItemNotes)}
+                        className={cn(styles.controlItem, styles.controlItemNotes, {
+                            [styles.controlItemSelected]: marksSelected,
+                        })}
                         style={{
                             fontSize: `${thirdCellSize}px`,
                             gridTemplateColumns: `repeat(${field.size}, ${thirdCellSize}px)`,
