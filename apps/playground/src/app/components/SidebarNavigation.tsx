@@ -70,6 +70,19 @@ export const SidebarNavigation = memo(() => {
                 >
                     Sudoku
                 </RouteNavLink>
+                <RouteNavLink
+                    className={styles.routeLink}
+                    to="/sun"
+                    getClassName={getActiveClassName}
+                    onClick={handleToggleVisible}
+                    size="large"
+                    exactMatch={false}
+                >
+                    Sun
+                </RouteNavLink>
+                <p className={styles.linkDescription}>
+                    Test gl_InstanceID and gl_VertexID support in shaders
+                </p>
             </Drawer>
 
             {menuActions.length === 0 ? (

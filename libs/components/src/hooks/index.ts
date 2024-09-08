@@ -9,3 +9,4 @@ export { useMouseAction } from './useMouseAction';
 export { useAsyncModule } from './useAsyncModule';
 export { useSyncObservable } from './useSyncObservable';
 export { useHasOverflow } from './useHasOverflow';
+export { useDeepEqualMemo } from './useDeepEqualMemo';

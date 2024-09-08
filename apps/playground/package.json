@@ -19,6 +19,8 @@
     "@frozik/types": "^0.1.0",
     "@frozik/utils": "^0.1.0",
     "@js-temporal/polyfill": "^0.4.4",
+    "@react-three/drei": "^9.112.0",
+    "@react-three/fiber": "^8.17.7",
     "@reduxjs/toolkit": "^2.2.7",
     "@tensorflow/tfjs": "^4.20.0",
     "@uidotdev/usehooks": "^2.4.1",
@@ -33,11 +35,13 @@
     "react-router-dom": "^6.26.0",
     "redux-saga": "^1.3.0",
     "sudoku-gen": "^1.0.2",
+    "three": "^0.168.0",
     "ulidx": "^2.4.0",
     "usehooks-ts": "^3.1.0",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@types/matter-js": "^0.19.7"
+    "@types/matter-js": "^0.19.7",
+    "@types/three": "^0.168.0"
   }
 }

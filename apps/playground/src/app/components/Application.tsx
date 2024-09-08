@@ -60,6 +60,16 @@ const rootRouter = createHashRouter(
                         </PageInjector>
                     ),
                 },
+                {
+                    path: 'sun',
+                    element: (
+                        <PageInjector
+                            lazyComponent={async () => (await import('../../features/sun/Sun')).Sun}
+                        >
+                            <OverlayLoader />
+                        </PageInjector>
+                    ),
+                },
             ],
         },
     ],
