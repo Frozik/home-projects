@@ -82,8 +82,14 @@ export const SUN_VERTEX_SHADER = `
     pos.xz *= rot(iPosSpherical.theta);
     
     pos += iPos + normalize(iPos) * sinVal;
-
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    
+    mat4 resultMatrix = projectionMatrix * modelViewMatrix;
+    
+    if (gl_VertexID == 0 &&mod(float(gl_InstanceID), 50.) == 0.) {
+      gl_Position = resultMatrix * vec4(0., 0., 0. , 1.);
+    } else {
+      gl_Position = resultMatrix * vec4(pos, 1.);
+    }
     
     vCol = neonGradient(0.6 + sinVal * 0.4);
   }
