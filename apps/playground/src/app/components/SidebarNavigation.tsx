@@ -86,14 +86,12 @@ export const SidebarNavigation = memo(() => {
             </Drawer>
 
             {menuActions.length === 0 ? (
-                <Tooltip title="Open navigation menu" placement="right">
-                    <FloatButton
-                        className={styles.sidebarMenuOpener}
-                        icon={<MenuOutlined />}
-                        type="primary"
-                        onClick={handleToggleVisible}
-                    />
-                </Tooltip>
+                <FloatButton
+                    className={styles.sidebarMenuOpener}
+                    icon={<MenuOutlined />}
+                    type="primary"
+                    onClick={handleToggleVisible}
+                />
             ) : (
                 <FloatButton.Group
                     className={styles.sidebarMenuOpener}
