@@ -83,6 +83,20 @@ export const SidebarNavigation = memo(() => {
                 <p className={styles.linkDescription}>
                     Test gl_InstanceID and gl_VertexID support in shaders
                 </p>
+                <RouteNavLink
+                    className={styles.routeLink}
+                    to="/charts"
+                    getClassName={getActiveClassName}
+                    onClick={handleToggleVisible}
+                    size="large"
+                    exactMatch={false}
+                >
+                    Charts
+                </RouteNavLink>
+                <p className={styles.linkDescription}>
+                    Draw chart on GPU with thickness and color.{' '}
+                    {new Intl.NumberFormat('en-US').format(2 ** 20)} points
+                </p>
             </Drawer>
 
             {menuActions.length === 0 ? (

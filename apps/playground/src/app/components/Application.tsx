@@ -70,6 +70,18 @@ const rootRouter = createHashRouter(
                         </PageInjector>
                     ),
                 },
+                {
+                    path: 'charts',
+                    element: (
+                        <PageInjector
+                            lazyComponent={async () =>
+                                (await import('../../features/charts/Charts')).Charts
+                            }
+                        >
+                            <OverlayLoader />
+                        </PageInjector>
+                    ),
+                },
             ],
         },
     ],
