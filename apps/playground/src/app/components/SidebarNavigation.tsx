@@ -80,9 +80,6 @@ export const SidebarNavigation = memo(() => {
                 >
                     Sun
                 </RouteNavLink>
-                <p className={styles.linkDescription}>
-                    Test gl_InstanceID and gl_VertexID support in shaders
-                </p>
                 <RouteNavLink
                     className={styles.routeLink}
                     to="/charts"
@@ -93,10 +90,15 @@ export const SidebarNavigation = memo(() => {
                 >
                     Charts
                 </RouteNavLink>
-                <p className={styles.linkDescription}>
-                    Draw chart on GPU with thickness and color.{' '}
-                    {new Intl.NumberFormat('en-US').format(2 ** 20)} points
-                </p>
+                <div className={styles.linkDescription}>
+                    Example of plotting on the GPU
+                    <ul>
+                        <li>Varying line thickness at the start and end of segments</li>
+                        <li>Gradient coloring</li>
+                        <li>Rounded segment endings</li>
+                        <li>{new Intl.NumberFormat('en-US').format(2 ** 19)} points</li>
+                    </ul>
+                </div>
             </Drawer>
 
             {menuActions.length === 0 ? (
