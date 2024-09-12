@@ -72,11 +72,19 @@ export const sudokuSlice = createAppSlice({
                     return;
                 }
 
-                state.history = [...state.history, cloneDeep(state.field.value)];
-
-                state.field = createSyncedValueDescriptor(
-                    applyToolToFieldReducer(state.field.value, state.tool, row, column),
+                const oldField = state.field.value;
+                const newField = applyToolToFieldReducer(
+                    state.field.value,
+                    state.tool,
+                    row,
+                    column,
                 );
+
+                if (oldField !== newField) {
+                    state.history = [...state.history, cloneDeep(state.field.value)];
+                }
+
+                state.field = createSyncedValueDescriptor(newField);
             },
         ),
         markField: create.reducer((state) => {

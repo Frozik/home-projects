@@ -1,4 +1,4 @@
-import { ClearOutlined, FormOutlined, MenuOutlined, RollbackOutlined } from '@ant-design/icons';
+import { ClearOutlined, FormOutlined, RollbackOutlined, UndoOutlined } from '@ant-design/icons';
 import { useFunction } from '@frozik/components';
 import cn from 'classnames';
 import { isNil } from 'lodash-es';
@@ -123,31 +123,32 @@ export const FieldControls = memo(
                         }}
                         onClick={onExitGame}
                     >
-                        <MenuOutlined />
-                    </div>
-
-                    <div
-                        className={styles.controlItem}
-                        style={{
-                            ...baseStyle,
-                            gridColumn: 2,
-                        }}
-                        onClick={onRestartGame}
-                    >
-                        <ClearOutlined />
+                        <RollbackOutlined />
                     </div>
 
                     {hasHistory && (
-                        <div
-                            className={styles.controlItem}
-                            style={{
-                                ...baseStyle,
-                                gridColumn: 3,
-                            }}
-                            onClick={onRestorePreviousState}
-                        >
-                            <RollbackOutlined />
-                        </div>
+                        <>
+                            <div
+                                className={styles.controlItem}
+                                style={{
+                                    ...baseStyle,
+                                    gridColumn: 2,
+                                }}
+                                onClick={onRestartGame}
+                            >
+                                <ClearOutlined />
+                            </div>
+                            <div
+                                className={styles.controlItem}
+                                style={{
+                                    ...baseStyle,
+                                    gridColumn: 3,
+                                }}
+                                onClick={onRestorePreviousState}
+                            >
+                                <UndoOutlined />
+                            </div>
+                        </>
                     )}
                 </div>
 
