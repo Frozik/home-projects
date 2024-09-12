@@ -91,12 +91,11 @@ export const SidebarNavigation = memo(() => {
                     Charts
                 </RouteNavLink>
                 <div className={styles.linkDescription}>
-                    Example of plotting on the GPU
+                    Example of plotting charts on the GPU
                     <ul>
                         <li>Varying line thickness at the start and end of segments</li>
                         <li>Gradient coloring</li>
                         <li>Rounded segment endings</li>
-                        <li>{new Intl.NumberFormat('en-US').format(2 ** 19)} points</li>
                     </ul>
                 </div>
             </Drawer>

@@ -32,8 +32,17 @@ layers and the number of neurons in each layer. To view the weights and biases o
 neuron of interest.
 
 ## Sudoku
- * Yet another implementation of the Sudoku game, but with the controls that I like the most
+Yet another implementation of the Sudoku game, but with the controls that I like the most
 
-## [Missing] WebGL charts
+## Sun
+Not all GPU correctly support gl_InstanceID & gl_VertexID. This is small test for this shader feature.
+
+## Charts
+Example of plotting charts on the GPU
+* Varying line thickness at the start and end of segments
+* Gradient coloring
+* Rounded segment endings
+
+
 ## [Missing] Financial controls: Rate with PIPs, Calendar with Tenors (With nanoseconds and timezone support)
 ## [Missing] Face detection from camera + effects

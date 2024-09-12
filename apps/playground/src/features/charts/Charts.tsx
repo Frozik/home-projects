@@ -32,8 +32,8 @@ export const Charts = memo(() => {
     return (
         <div ref={ref} className={styles.container}>
             <Canvas orthographic camera={camera} scene={{ background: new Color('#262626') }}>
-                <SinMesh />
                 <LineMesh />
+                <SinMesh />
             </Canvas>
         </div>
     );

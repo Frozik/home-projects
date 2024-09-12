@@ -7,17 +7,15 @@ import { CHARTS_FRAGMENT_SHADER, SEGMENT_VERTEX_SHADER } from './shaders';
 export const LineMesh = memo(() => {
     const uniforms = useMemo(
         () => ({
-            uCount: { value: 1 },
-            uSize: { value: new Float32Array([1000, 500]) },
-            uPenSize: { value: new Float32Array([2, 50]) },
-            uOpacity: { value: 1 },
+            uCount: { value: 4 },
+            uSize: { value: new Float32Array([window.innerWidth, window.innerHeight]) },
         }),
         [],
     );
 
-    useFrame((stage) => {
-        uniforms.uSize.value[0] = stage.viewport.width - 2 * uniforms.uPenSize.value[1];
-        uniforms.uSize.value[1] = stage.viewport.height - 2 * uniforms.uPenSize.value[1];
+    useFrame(({ viewport }) => {
+        uniforms.uSize.value[0] = Math.max(0, viewport.width - 20);
+        uniforms.uSize.value[1] = Math.max(0, viewport.height - 20);
     });
 
     return (
@@ -38,13 +36,3 @@ export const LineMesh = memo(() => {
         </mesh>
     );
 });
-
-/*
-* export const ZeroStencilOp: 0;
-export const KeepStencilOp: 7680;
-export const ReplaceStencilOp: 7681;
-export const IncrementStencilOp: 7682;
-export const DecrementStencilOp: 7283;
-export const IncrementWrapStencilOp: 34055;
-export const DecrementWrapStencilOp: 34056;
-export const InvertStencilOp: 5386;*/

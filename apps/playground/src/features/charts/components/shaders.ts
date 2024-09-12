@@ -90,9 +90,12 @@ export const SIN_VERTEX_SHADER = `
   ${LINE_DRAWING_VERTEX_SHADER}
   
   vec2 getUVPoint(int offset) {
-    float x = (float(gl_InstanceID + offset) / uCount - 0.5) * 2.;
+    float index = float(gl_InstanceID + offset); 
   
-    return vec2(x, sin(x * 10. * PI + uTime));
+    float x = (index / uCount - 0.5) * 2.;
+    float y = sin(x * 0.5 * PI + uTime);
+    
+    return vec2(x, mod(index + 1., 4.) > 1. ? y : -y);
   }
   
   vec2 getPoint(vec2 uvPoint) {
@@ -100,7 +103,7 @@ export const SIN_VERTEX_SHADER = `
   }
   
   vec4 getPointColor(vec2 uvPoint) {
-    return vec4(0., (uvPoint.x + 1.) / 2., (uvPoint.y + 1.) / 2., 1.);
+    return vec4(0.5, (uvPoint.x + 1.) / 2., (uvPoint.y + 1.) / 2., 1.);
   }
 
   float getWidth(int offset) {
@@ -128,20 +131,69 @@ export const SIN_VERTEX_SHADER = `
 
 export const SEGMENT_VERTEX_SHADER = `
   uniform vec2 uSize;
-  uniform vec2 uPenSize;
-  uniform float uOpacity;
   
   ${LINE_DRAWING_VERTEX_SHADER}
+
+  vec3 getUVPoint(int offset) {
+    int index = gl_InstanceID + offset;
+    
+    if (index == 0) {
+      return vec3(-1., -1., 4.);
+    }
+    
+    if (index == 1) {
+      return vec3(1., -1., 16.);
+    }
+    
+    if (index == 2) {
+      return vec3(1., 1., 4.);
+    }
+    
+    if (index == 3) {
+      return vec3(-1., 1., 16.);
+    }
+    
+    if (index == 4) {
+      return vec3(-1., -1., 4.);
+    }
+  }
+  
+  vec4 getColor(int offset) {
+    int index = gl_InstanceID + offset;
+    
+    if (index == 0) {
+      return vec4(0., 0.5, 1., 1.);
+    }
+    
+    if (index == 1) {
+      return vec4(0.5, 1., 0., 1.);
+    }
+    
+    if (index == 2) {
+      return vec4(1., 0.5, 0., 1.);
+    }
+    
+    if (index == 3) {
+      return vec4(1., 0., 0.5, 1.);
+    }
+    
+    if (index == 4) {
+      return vec4(0., 0.5, 1., 1.);
+    }
+  }
   
   void main(){
     mat4 resultMatrix = projectionMatrix * modelViewMatrix;
+
+    vec3 uvPointA = getUVPoint(0);
+    vec3 uvPointB = getUVPoint(1);
     
-    vec2 pointA = vec2(-uSize.x / 2., uSize.y / 2.);
-    vec2 pointB = vec2(uSize.x / 2., -uSize.y / 2.);
-    float widthA = uPenSize.x;
-    float widthB = uPenSize.y;
-    vec4 colorA = vec4(0., 1., 0., uOpacity);
-    vec4 colorB = vec4(1., 0., 0., uOpacity);
+    vec2 pointA = uvPointA.xy * (uSize / 2.);
+    vec2 pointB = uvPointB.xy * (uSize / 2.);
+    float widthA = uvPointA.z;
+    float widthB = uvPointB.z;
+    vec4 colorA = getColor(0);
+    vec4 colorB = getColor(1);
     
     drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB, gl_InstanceID == 0);
   }
