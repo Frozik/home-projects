@@ -1,4 +1,4 @@
-import{r as n,w as t,i as f}from"./e-C3ktzW1v.js";import{c as s,D as u,G as v,O as x,C as h,d as m}from"./c-BifeIMKo.js";import{u as w}from"./c-2-HMD201.js";const l=`
+import{r as n,w as t,i as f}from"./e-BOCDKyxS.js";import{c as s,D as u,G as v,O as x,C as h,d as m}from"./c-DapWKaXd.js";import{u as w}from"./c-C85Fm6Q_.js";const l=`
   #define PI 3.1415926535
 
   out vec4 vColor;
@@ -51,7 +51,7 @@ import{r as n,w as t,i as f}from"./e-C3ktzW1v.js";import{c as s,D as u,G as v,O 
     gl_Position = resultMatrix * vec4(vertexPosition, 0., 1.);
   }
   
-  void drawLineWithJoins(mat4 resultMatrix, vec2 pointA, vec2 pointB, float widthA, float widthB, vec4 colorA, vec4 colorB, bool hasConnectedJoin) {
+  void drawLineWithJoins(mat4 resultMatrix, vec2 pointA, vec2 pointB, float widthA, float widthB, vec4 colorA, vec4 colorB) {
     if (gl_VertexID < 6) {
       drawJoin(resultMatrix, pointA, widthA, colorA, 0);
     } else if (gl_VertexID < 12) {
@@ -121,7 +121,7 @@ import{r as n,w as t,i as f}from"./e-C3ktzW1v.js";import{c as s,D as u,G as v,O 
     vec4 colorA = getPointColor(uvPointA);
     vec4 colorB = getPointColor(uvPointB);
     
-    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB, gl_InstanceID == 0);
+    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB);
   }
 `,A=`
   uniform vec2 uSize;
@@ -189,6 +189,6 @@ import{r as n,w as t,i as f}from"./e-C3ktzW1v.js";import{c as s,D as u,G as v,O 
     vec4 colorA = getColor(0);
     vec4 colorB = getColor(1);
     
-    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB, gl_InstanceID == 0);
+    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB);
   }
-`,P=n.memo(()=>{const e=n.useMemo(()=>({uCount:{value:4},uSize:{value:new Float32Array([window.innerWidth,window.innerHeight])}}),[]);return s(({viewport:i})=>{e.uSize.value[0]=Math.max(0,i.width-20),e.uSize.value[1]=Math.max(0,i.height-20)}),t.jsxs("mesh",{children:[t.jsx("instancedBufferGeometry",{instanceCount:e.uCount.value,drawRange:{start:0,count:6*3}}),t.jsx("shaderMaterial",{side:u,glslVersion:v,uniforms:e,fragmentShader:d,vertexShader:A})]})}),g=n.memo(()=>{const e=n.useMemo(()=>({uTime:{value:0},uCount:{value:1},uSize:{value:new Float32Array([window.innerWidth,window.innerHeight])},uPenSize:{value:new Float32Array([2,20])}}),[]),i=n.useRef(null);return s((r,o)=>{e.uTime.value+=o,e.uSize.value[0]=r.viewport.width-4*e.uPenSize.value[1],e.uSize.value[1]=r.viewport.height-4*e.uPenSize.value[1],e.uCount.value=Math.trunc(r.viewport.width/e.uPenSize.value[1]/4)*4+1,f(i.current)||(i.current.instanceCount=e.uCount.value)}),t.jsxs("mesh",{children:[t.jsx("instancedBufferGeometry",{ref:i,instanceCount:e.uCount.value,drawRange:{start:0,count:6*3}}),t.jsx("shaderMaterial",{side:u,glslVersion:v,uniforms:e,fragmentShader:d,vertexShader:B})]})}),p="_container_ufavl_1",C={container:p},_=n.memo(()=>{const e=n.useRef(null),{width:i=0,height:r=0}=w({ref:e,box:"border-box"}),o=n.useMemo(()=>new x(0,0,0,0,-1e3,1e3),[]);return n.useEffect(()=>{const c=i/2,a=r/2;o.left=-c,o.right=c,o.top=a,o.bottom=-a,o.updateProjectionMatrix()},[o,i,r]),t.jsx("div",{ref:e,className:C.container,children:t.jsxs(h,{orthographic:!0,camera:o,scene:{background:new m("#262626")},children:[t.jsx(P,{}),t.jsx(g,{})]})})});export{_ as Charts};
+`,P=n.memo(()=>{const e=n.useMemo(()=>({uCount:{value:4},uSize:{value:new Float32Array([window.innerWidth,window.innerHeight])}}),[]);return s(({viewport:i})=>{e.uSize.value[0]=Math.max(0,i.width-20),e.uSize.value[1]=Math.max(0,i.height-20)}),t.jsxs("mesh",{children:[t.jsx("instancedBufferGeometry",{instanceCount:e.uCount.value,drawRange:{start:0,count:6*3}}),t.jsx("shaderMaterial",{side:u,glslVersion:v,uniforms:e,fragmentShader:d,vertexShader:A})]})}),g=n.memo(()=>{const e=n.useMemo(()=>({uTime:{value:0},uCount:{value:1},uSize:{value:new Float32Array([window.innerWidth,window.innerHeight])},uPenSize:{value:new Float32Array([2,20])}}),[]),i=n.useRef(null);return s((r,o)=>{e.uTime.value+=o,e.uSize.value[0]=r.viewport.width-4*e.uPenSize.value[1],e.uSize.value[1]=r.viewport.height-4*e.uPenSize.value[1],e.uCount.value=Math.trunc(r.viewport.width/e.uPenSize.value[1]/4)*4+1,f(i.current)||(i.current.instanceCount=e.uCount.value)}),t.jsxs("mesh",{children:[t.jsx("instancedBufferGeometry",{ref:i,instanceCount:e.uCount.value,drawRange:{start:0,count:6*3}}),t.jsx("shaderMaterial",{side:u,glslVersion:v,uniforms:e,fragmentShader:d,vertexShader:B})]})}),p="_container_15fkn_1",C={container:p},z=n.memo(()=>{const e=n.useRef(null),{width:i=0,height:r=0}=w({ref:e,box:"border-box"}),o=n.useMemo(()=>new x(0,0,0,0,-1e3,1e3),[]);return n.useEffect(()=>{const c=i/2,a=r/2;o.left=-c,o.right=c,o.top=a,o.bottom=-a,o.updateProjectionMatrix()},[o,i,r]),t.jsx("div",{ref:e,className:C.container,children:t.jsxs(h,{orthographic:!0,camera:o,scene:{background:new m("#262626")},children:[t.jsx(P,{}),t.jsx(g,{})]})})});export{z as Charts};
