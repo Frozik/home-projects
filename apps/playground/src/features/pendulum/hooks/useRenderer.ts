@@ -2,7 +2,7 @@ import { isNil } from 'lodash-es';
 import { useMemo, useState } from 'react';
 
 import type { IRenderer, IWorld } from '../../../libs/pendulum/def';
-import { renderForce } from '../../../libs/pendulum/renderers/renderFoce';
+import { renderForce } from '../../../libs/pendulum/renderers/renderForce';
 import { renderPendulum } from '../../../libs/pendulum/renderers/renderPendulum';
 import { renderRails } from '../../../libs/pendulum/renderers/renderRails';
 

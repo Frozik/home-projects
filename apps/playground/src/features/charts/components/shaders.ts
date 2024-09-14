@@ -51,7 +51,7 @@ const LINE_DRAWING_VERTEX_SHADER = `
     gl_Position = resultMatrix * vec4(vertexPosition, 0., 1.);
   }
   
-  void drawLineWithJoins(mat4 resultMatrix, vec2 pointA, vec2 pointB, float widthA, float widthB, vec4 colorA, vec4 colorB, bool hasConnectedJoin) {
+  void drawLineWithJoins(mat4 resultMatrix, vec2 pointA, vec2 pointB, float widthA, float widthB, vec4 colorA, vec4 colorB) {
     if (gl_VertexID < 6) {
       drawJoin(resultMatrix, pointA, widthA, colorA, 0);
     } else if (gl_VertexID < 12) {
@@ -125,7 +125,7 @@ export const SIN_VERTEX_SHADER = `
     vec4 colorA = getPointColor(uvPointA);
     vec4 colorB = getPointColor(uvPointB);
     
-    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB, gl_InstanceID == 0);
+    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB);
   }
 `;
 
@@ -195,6 +195,6 @@ export const SEGMENT_VERTEX_SHADER = `
     vec4 colorA = getColor(0);
     vec4 colorB = getColor(1);
     
-    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB, gl_InstanceID == 0);
+    drawLineWithJoins(resultMatrix, pointA, pointB, widthA, widthB, colorA, colorB);
   }
 `;
