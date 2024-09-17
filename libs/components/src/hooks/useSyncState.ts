@@ -3,11 +3,11 @@ import type { DependencyList } from 'react';
 import { useMemo, useSyncExternalStore } from 'react';
 
 export function useSyncState<T>(
-    seed: T,
+    seed: T | (() => T),
     deps: DependencyList,
 ): [T, (v: T | ((v: T) => T)) => void] {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const store = useMemo(() => createStore(seed), deps);
+    const store = useMemo(() => createStore(isFunction(seed) ? seed() : seed), deps);
     return [useSyncExternalStore(store.subscribe, store.getSnapshot), store.setValue];
 }
 

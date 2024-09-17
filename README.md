@@ -44,5 +44,7 @@ Example of plotting charts on the GPU
 * Rounded segment endings
 
 
-## [Missing] Financial controls: Rate with PIPs, Calendar with Tenors (With nanoseconds and timezone support)
+## [Missing] Financial controls: Calendar with Tenors (With nanoseconds and timezone support)
 ## [Missing] Face detection from camera + effects
+## [Missing] Bug reporting
+## [Missing] Chart opacity

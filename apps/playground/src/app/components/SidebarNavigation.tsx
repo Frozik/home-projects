@@ -98,6 +98,15 @@ export const SidebarNavigation = memo(() => {
                         <li>Rounded segment endings</li>
                     </ul>
                 </div>
+                <RouteNavLink
+                    className={styles.routeLink}
+                    to="/controls"
+                    getClassName={getActiveClassName}
+                    onClick={handleToggleVisible}
+                    size="large"
+                >
+                    Controls
+                </RouteNavLink>
             </Drawer>
 
             {menuActions.length === 0 ? (

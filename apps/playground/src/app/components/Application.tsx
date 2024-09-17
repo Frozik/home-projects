@@ -82,6 +82,18 @@ const rootRouter = createHashRouter(
                         </PageInjector>
                     ),
                 },
+                {
+                    path: 'controls',
+                    element: (
+                        <PageInjector
+                            lazyComponent={async () =>
+                                (await import('../../features/controls/Controls')).Controls
+                            }
+                        >
+                            <OverlayLoader />
+                        </PageInjector>
+                    ),
+                },
             ],
         },
     ],
