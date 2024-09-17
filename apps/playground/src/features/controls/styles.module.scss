@@ -4,6 +4,12 @@
   width: 600px;
   margin: 20px auto;
   color: $gray-1;
+
+  @media (max-width: 600px) {
+    margin: 0;
+    width: 100vw;
+    padding: 10px
+  }
 }
 
 .editor {
