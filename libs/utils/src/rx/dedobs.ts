@@ -10,52 +10,41 @@ import { shareReplayWithImmediateReset } from './shareReplayWithImmediateReset';
 
 type TKey = boolean | number | string;
 
-export const DEDOBS_SKIP_KEY = Symbol('SKIP_KEY');
-
 const DEFAULT_NORMALIZER = <T extends unknown[]>(...args: T): TKey => hash_sum(args);
 
 const DEFAULT_REMOVE_UNSUBSCRIBED_DELAY = 5_000;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function dedobs<Fn extends (...args: any[]) => Observable<unknown>>(
-    fn: Fn,
+export function dedobs<T extends (...args: any[]) => Observable<unknown>>(
+    builder: T,
     options: {
-        normalize?: (args: Parameters<Fn>) => typeof DEDOBS_SKIP_KEY | TKey;
-        /**
-         * Delay on reset internal cache in shareReplay
-         */
+        normalize?: (args: Parameters<T>) => TKey;
         resetDelay?: number;
         replayCount?: number;
-        /**
-         * Delay on remove from bank after ref count equal zero
-         */
         removeDelay?: number;
         removeUnsubscribedDelay?: number;
     } = {},
 ) {
     const normalize = options.normalize ?? DEFAULT_NORMALIZER;
-    const getObsCache = getObsCacheFactory<ReturnType<Fn>>(
+    const getObsCache = getObsCacheFactory<ReturnType<T>>(
         options.replayCount ?? 1,
         options.resetDelay,
         options.removeDelay,
         options.removeUnsubscribedDelay ?? DEFAULT_REMOVE_UNSUBSCRIBED_DELAY,
     );
 
-    return (...args: Parameters<Fn>): ReturnType<Fn> => {
-        const key = normalize(args);
-        return key === DEDOBS_SKIP_KEY
-            ? (fn(...args) as ReturnType<Fn>)
-            : getObsCache(key, () => fn(...args) as ReturnType<Fn>);
+    return (...args: Parameters<T>): ReturnType<T> => {
+        return getObsCache(normalize(args), () => builder(...args) as ReturnType<T>);
     };
 }
 
-function getObsCacheFactory<Obs extends Observable<unknown>>(
+function getObsCacheFactory<TObservable extends Observable<unknown>>(
     replayCount: number,
     resetDelay: undefined | number,
     removeDelay: undefined | number,
     removeUnsubscribedDelay: number,
 ) {
-    const mapKeyToCache = new Map<TKey, { refCount: number; obs: Obs }>();
+    const mapKeyToCache = new Map<TKey, { refCount: number; obs: TObservable }>();
 
     const removeIfDerelict = (key: TKey) => {
         const cache = mapKeyToCache.get(key);
@@ -84,7 +73,7 @@ function getObsCacheFactory<Obs extends Observable<unknown>>(
             cache.refCount === 0 && removeCache(key);
         }
     };
-    const createCache = (key: TKey, obs: Obs) => {
+    const createCache = (key: TKey, obs: TObservable) => {
         const timeoutId = setTimeout(() => removeIfDerelict(key), removeUnsubscribedDelay);
 
         return {
@@ -99,11 +88,11 @@ function getObsCacheFactory<Obs extends Observable<unknown>>(
                     subscribe: onSubscribe.bind(null, key, () => clearTimeout(timeoutId)),
                     finalize: onFinalize.bind(null, key),
                 }),
-            ) as Obs,
+            ) as TObservable,
         };
     };
 
-    return (key: TKey, getObs: () => Obs) => {
+    return (key: TKey, getObs: () => TObservable) => {
         if (!mapKeyToCache.has(key)) {
             mapKeyToCache.set(key, createCache(key, getObs()));
         }

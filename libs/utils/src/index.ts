@@ -8,3 +8,4 @@ export * from './value-descriptors';
 export * from './rx';
 export * from './database';
 export * from './saga';
+export * from './math';

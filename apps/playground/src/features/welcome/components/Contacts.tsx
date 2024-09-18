@@ -1,10 +1,8 @@
 import { GithubOutlined, LinkOutlined, MailOutlined, WhatsAppOutlined } from '@ant-design/icons';
-import { Avatar, Button, Tooltip } from 'antd';
+import { Button, QRCode, Tooltip } from 'antd';
 import { memo } from 'react';
 
 import cvUrl from '../../../assets/Sharov_Dmitry_Nikolaevich.pdf';
-import telegramUrl from '../../../assets/telegram-qr.png';
-import whatsupUrl from '../../../assets/whatsup-qr.png';
 import { SvgTelegram } from '../../../icons/SvgTelegram';
 import styles from '../styles.module.scss';
 import { getAge } from '../utils';
@@ -29,7 +27,9 @@ export const Contacts = memo(() => (
         <address className={styles.infoBlock}>
             <ul>
                 <li>
-                    <Tooltip title={<Avatar shape="square" size={256} src={telegramUrl} />}>
+                    <Tooltip
+                        title={<QRCode size={256} errorLevel="H" value="https://t.me/Frozik" />}
+                    >
                         <a href="https://t.me/Frozik" target="_blank" rel="noreferrer">
                             <SvgTelegram style={{ fill: '#ffffff' }} />
                             @Frozik
@@ -38,7 +38,15 @@ export const Contacts = memo(() => (
                     — preferred means of communication
                 </li>
                 <li>
-                    <Tooltip title={<Avatar shape="square" size={256} src={whatsupUrl} />}>
+                    <Tooltip
+                        title={
+                            <QRCode
+                                size={256}
+                                errorLevel="H"
+                                value="https://wa.me/qr/TCOFX34ZSPXDN1"
+                            />
+                        }
+                    >
                         <a href="https://wa.me/79817151041" target="_blank" rel="noreferrer">
                             <WhatsAppOutlined />
                             Dmitry Sharov
