@@ -24,7 +24,7 @@ $field-controls-margin: 10;
   user-select: none;
 
   &--completed {
-    background: $green-7;
+    background: rgba($green-4, 0.5);
   }
 
   &-group {
