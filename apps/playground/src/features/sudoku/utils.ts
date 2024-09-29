@@ -106,7 +106,7 @@ export function applyToolToFieldReducer(
     if (tool.type === EToolType.Pen) {
         if (cell.value !== tool.value) {
             cell.value = tool.value;
-            cell.notes = cell.notes = cell.notes.filter((note) => note !== tool.value);;
+            cell.notes = cell.notes = cell.notes.filter((note) => note !== tool.value);
 
             getBoundCells(field, row, column).forEach(({ row, column, cell }) => {
                 cells[getIndex(row, column, field.size)] = {
