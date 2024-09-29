@@ -1,4 +1,4 @@
-import{r as Qe,av as K0,H as yi}from"./e-C3YuyLmM.js";/**
+import{r as Qe,ax as K0,H as yi}from"./e-DQ3AfMkX.js";/**
  * @license
  * Copyright 2010-2024 Three.js Authors
  * SPDX-License-Identifier: MIT
