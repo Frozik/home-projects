@@ -17,6 +17,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "types": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@js-temporal/polyfill": "^0.4.4"
+  },
   "devDependencies": {}
 }

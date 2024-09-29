@@ -1,8 +1,6 @@
 @import "../../colors.scss";
 
 .container {
-  width: 100svw;
-  height: 100svh;
   padding: 20px;
 
   @media (max-width: 600px) {

@@ -84,6 +84,7 @@
     "vitest": "^2.0.5"
   },
   "overrides": {
+    "@js-temporal/polyfill": "^0.4.4",
     "antd": "^5.20.2",
     "classnames": "^2.5.1",
     "idb": "^8.0.0",

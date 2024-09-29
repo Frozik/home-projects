@@ -4,9 +4,18 @@
   padding: 0 40px;
   color: $gray-1;
 
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
   .controls {
     margin: 20px 0 0 0;
   }
+
+  @media (max-width: 600px) {
+    padding: 0;
+  }
+
 }
 
 .editor {
@@ -57,4 +66,55 @@
 
 .placeholder {
   color: $grey-7;
+}
+
+.calendar {
+  display: inline-grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+
+  background-color: $grey-11;
+  padding: 4px;
+}
+
+.calendar-day-cell {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+
+  color: $grey-6;
+
+  border-radius: 4px;
+
+  &--today {
+    font-weight: bold;
+    color: $grey-1;
+  }
+
+  &--selected {
+    background-color: rgba($blue-5, 0.7);
+  }
+
+  &--weekend {
+    background-color: rgba($red-10, 0.7);
+
+    &.calendar-day-cell--selected {
+      background-color: rgba($red-6, 0.7);
+    }
+  }
+
+  &--tenor {
+    border-color: $green-8;
+  }
+
+  &--overflow {
+    color: $grey-8;
+  }
 }

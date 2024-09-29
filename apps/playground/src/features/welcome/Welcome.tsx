@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { memo, useRef } from 'react';
 
 import avatarUrl from '../../assets/avatar.png';
+import commonStyles from '../styles.module.scss';
 import { Contacts } from './components/Contacts';
 import { Education } from './components/Education';
 import { Position } from './components/Position';
@@ -17,7 +18,7 @@ export const Welcome = memo(() => {
     const { canScrollTop, canScrollBottom } = useHasOverflow(cvRef);
 
     return (
-        <div className={styles.container}>
+        <div className={cn(styles.container, commonStyles.fixedContainer)}>
             <section
                 ref={cvRef}
                 className={cn(styles.cv, {

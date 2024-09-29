@@ -3,9 +3,9 @@ import { memo, useEffect, useMemo, useRef } from 'react';
 import { Color, OrthographicCamera } from 'three';
 import { useResizeObserver } from 'usehooks-ts';
 
+import commonStyles from '../styles.module.scss';
 import { LineMesh } from './components/LineMesh';
 import { SinMesh } from './components/SinMesh';
-import styles from './styles.module.scss';
 
 export const Charts = memo(() => {
     const ref = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ export const Charts = memo(() => {
     }, [camera, width, height]);
 
     return (
-        <div ref={ref} className={styles.container}>
+        <div ref={ref} className={commonStyles.fixedContainer}>
             <Canvas orthographic camera={camera} scene={{ background: new Color('#262626') }}>
                 <LineMesh />
                 <SinMesh />

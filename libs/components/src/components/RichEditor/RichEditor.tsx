@@ -135,6 +135,23 @@ export const RichEditor = memo(
             return () => document.removeEventListener('selectionchange', handleSelectionChange);
         }, [handleSelectionChange, focused]);
 
+        const updateFocused = useFunction((newFocused: boolean) => {
+            if (newFocused === focused) {
+                return;
+            }
+
+            setFocused(newFocused);
+            onFocusChanges?.(newFocused);
+        });
+
+        useEffect(() => {
+            if (isNil(contentEditableRef.current)) {
+                return;
+            }
+
+            updateFocused(isParentOf(document.activeElement, contentEditableRef.current));
+        }, [onFocusChanges, updateFocused]);
+
         return (
             <div
                 ref={contentEditableRef}

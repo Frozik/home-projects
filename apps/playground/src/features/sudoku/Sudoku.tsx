@@ -2,6 +2,7 @@ import { useFunction } from '@frozik/components';
 import { isFailValueDescriptor, matchValueDescriptor } from '@frozik/utils';
 import type { RadioChangeEvent } from 'antd';
 import { Radio } from 'antd';
+import cn from 'classnames';
 import { isNil } from 'lodash-es';
 import { memo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,6 +10,7 @@ import { getSudoku } from 'sudoku-gen';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ValueDescriptorFail } from '../../components/ValueDescriptorFail';
+import commonStyles from '../styles.module.scss';
 import { SudokuField } from './components/SudokuField';
 import type { TTool } from './defs';
 import styles from './Sudoku.module.scss';
@@ -63,7 +65,7 @@ export const Sudoku = memo(() => {
     const handleRestartPuzzle = useFunction(() => dispatch(restartPuzzle()));
 
     return (
-        <div className={styles.container}>
+        <div className={cn(styles.container, commonStyles.fixedContainer)}>
             {matchValueDescriptor(field, {
                 synced: ({ value: field }) => (
                     <SudokuField
