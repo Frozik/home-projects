@@ -89,6 +89,8 @@
   border-style: solid;
   border-color: transparent;
 
+  cursor: pointer;
+
   color: $grey-6;
 
   border-radius: 4px;
@@ -98,15 +100,19 @@
     color: $grey-1;
   }
 
+  &:hover:not(#\9) {
+    background-color: $blue-5;
+  }
+
   &--selected {
     background-color: rgba($blue-5, 0.7);
   }
 
   &--weekend {
-    background-color: rgba($red-10, 0.7);
+    background-color: rgba($red-10, 0.5);
 
     &.calendar-day-cell--selected {
-      background-color: rgba($red-6, 0.7);
+      background-color: rgba($red-6, 0.5);
     }
   }
 
@@ -115,6 +121,11 @@
   }
 
   &--overflow {
+    pointer-events: none;
     color: $grey-8;
+
+    &.calendar-day-cell--selected, &.calendar-day-cell--today {
+      color: $grey-6;
+    }
   }
 }

@@ -95,9 +95,9 @@ export const DateEditor = memo(
                             calendarDayCellWeekendClassName={styles.calendarDayCellWeekend}
                             calendarDayCellTenorClassName={styles.calendarDayCellTenor}
                             calendarDayCellOverflowClassName={styles.calendarDayCellOverflow}
-                            selectedDate={Temporal.PlainDate.from('2021-01-15')}
-                            minDate={Temporal.PlainDate.from('2021-01-03')}
-                            maxDate={Temporal.PlainDate.from('2021-01-20')}
+                            selectedDate={Temporal.PlainDate.from('2021-01-24')}
+                            minDate={Temporal.PlainDate.from('2021-01-04')}
+                            maxDate={Temporal.PlainDate.from('2021-01-30')}
                         />
                     )}
                 >

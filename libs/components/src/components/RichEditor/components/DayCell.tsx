@@ -45,6 +45,7 @@ export const DayCell = memo(
                 cell.overflow
                     ? cn(calendarDayCellClassName, calendarDayCellOverflowClassName, {
                           [calendarDayCellSelectedClassName]: cell.selected,
+                          [calendarDayCellTodayClassName]: cell.today,
                       })
                     : cn(calendarDayCellClassName, {
                           [calendarDayCellTodayClassName]: cell.today,

@@ -21,7 +21,7 @@ export const DateSelector = memo(
         today = EMPTY_VD,
         tenors = EMPTY_VD,
         weekendDays = EMPTY_VD,
-        startOfWeek = EDayOfWeek.Sunday,
+        startOfWeek = EDayOfWeek.Monday,
         selectedDate,
         minDate,
         maxDate,
@@ -81,11 +81,6 @@ export const DateSelector = memo(
                 ),
             [weekendDays],
         );
-        const todayISO = useMemo(() => today?.toString() as ISO | undefined, [today]);
-        const selectedISO = useMemo(
-            () => selectedDate?.toString() as ISO | undefined,
-            [selectedDate],
-        );
 
         const dateGrid = useMemo(() => {
             const startOfMonth = getStartOfMonth(yearMonth);
@@ -120,14 +115,19 @@ export const DateSelector = memo(
                             date,
                             tenors: tenorsMap.value?.get(dateISO) ?? [],
                             weekend: weekendsSet.value?.has(dateISO) ?? false,
-                            today: dateISO === todayISO,
-                            selected: dateISO === selectedISO,
+                            today: matchValueDescriptor(today, {
+                                synced: ({ value }) =>
+                                    Temporal.PlainDate.compare(date, value) === 0,
+                                unsynced: () => false,
+                            }),
+                            selected:
+                                !isNil(selectedDate) &&
+                                Temporal.PlainDate.compare(date, selectedDate) === 0,
                             overflow:
                                 Temporal.PlainYearMonth.compare(date, yearMonth) !== 0 ||
                                 (!isNil(minDate) &&
-                                    Temporal.PlainYearMonth.compare(date, minDate) < 0) ||
-                                (!isNil(maxDate) &&
-                                    Temporal.PlainYearMonth.compare(date, maxDate) > 0),
+                                    Temporal.PlainDate.compare(date, minDate) < 0) ||
+                                (!isNil(maxDate) && Temporal.PlainDate.compare(date, maxDate) > 0),
                         };
                     }),
                 );
@@ -139,8 +139,8 @@ export const DateSelector = memo(
             startOfWeek,
             tenorsMap.value,
             weekendsSet.value,
-            todayISO,
-            selectedISO,
+            today,
+            selectedDate,
             minDate,
             maxDate,
         ]);
