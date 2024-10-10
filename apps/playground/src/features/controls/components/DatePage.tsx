@@ -43,18 +43,14 @@ export const DateEditor = memo(
     }) => {
         const [focused, setFocused] = useState(false);
 
-        /*
-        *  today$: Observable<Temporal.PlainDate>;
-        tenors$?: Observable<TValueDescriptor<TenorDate[]>>;
-        getWeekendDays$?: (
-            yearMonth: Temporal.PlainYearMonth,
-        ) => Observable<TValueDescriptor<Temporal.PlainDate[]>>;
-        *
-                            today$={of(Temporal.PlainDate.from('2021-01-29'))}
-                            yearMonth={Temporal.PlainYearMonth.from('2021-01')}
-                            tenors$={tenors$}
-                            getWeekendDays$={getWeekendDays$}
-        * */
+        // Today can change when switching to new date, the best is to get today from server
+        // today$: Observable<Temporal.PlainDate>;
+        // Tenors can change depending on exchange business hours
+        // tenors$: Observable<TValueDescriptor<TenorDate[]>>;
+        // Weekend days can change depending on exchange holidays and weekends
+        // getWeekendDays$?: (
+        //     yearMonth: Temporal.PlainYearMonth,
+        // ) => Observable<TValueDescriptor<Temporal.PlainDate[]>>;
 
         return (
             <>
