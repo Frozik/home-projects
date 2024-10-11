@@ -128,4 +128,8 @@
       color: $grey-6;
     }
   }
+
+  &--header {
+    pointer-events: none;
+  }
 }

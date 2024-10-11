@@ -10,10 +10,14 @@ import {
     matchValueDescriptor,
 } from '@frozik/utils';
 import { Temporal } from '@js-temporal/polyfill';
+import cn from 'classnames';
 import { isNil } from 'lodash-es';
+import type { ReactNode } from 'react';
 import { memo, useMemo } from 'react';
 
 import { DayCell } from './DayCell';
+
+const DAY_NAMES = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export const DateSelector = memo(
     ({
@@ -33,6 +37,7 @@ export const DateSelector = memo(
         calendarDayCellTenorClassName,
         calendarDayCellOverflowClassName,
         onSelectCalendarDate,
+        calendarHeaderClassName,
     }: {
         yearMonth: Temporal.PlainYearMonth;
         selectedDate?: Temporal.PlainDate;
@@ -49,6 +54,7 @@ export const DateSelector = memo(
         calendarDayCellWeekendClassName: string;
         calendarDayCellTenorClassName: string;
         calendarDayCellOverflowClassName: string;
+        calendarHeaderClassName: string;
         onSelectCalendarDate?: (date: Temporal.PlainDate) => void;
     }) => {
         const tenorsMap = useMemo<TValueDescriptor<ReadonlyMap<ISO, TenorDate[]>>>(
@@ -145,15 +151,33 @@ export const DateSelector = memo(
             maxDate,
         ]);
 
+        const header = useMemo(() => {
+            const header: ReactNode[] = [];
+
+            for (let index = 0; index < DAYS_IN_WEEK; index++) {
+                header.push(
+                    <div
+                        key={index}
+                        className={cn(calendarDayCellClassName, calendarHeaderClassName)}
+                    >
+                        {DAY_NAMES[(startOfWeek - 1 + index) % DAYS_IN_WEEK].substring(0, 2)}
+                    </div>,
+                );
+            }
+
+            return header;
+        }, [calendarDayCellClassName, calendarHeaderClassName, startOfWeek]);
+
         return (
             <div className={calendarClassName}>
+                {header}
                 {dateGrid.map((row, rowIndex) =>
                     row.map((cell, colIndex) => (
                         <DayCell
                             key={cell.date.toString()}
                             cell={cell}
                             gridColumn={colIndex + 1}
-                            gridRow={rowIndex + 1}
+                            gridRow={rowIndex + 2}
                             calendarDayCellClassName={calendarDayCellClassName}
                             calendarDayCellTodayClassName={calendarDayCellTodayClassName}
                             calendarDayCellSelectedClassName={calendarDayCellSelectedClassName}
