@@ -27,14 +27,22 @@ export const PageInjector = memo(
         const [registered, setRegistered] = useState(false);
 
         useEffect(() => {
-            !isNil(slice) && addSlice(slice);
-            !isNil(saga) && addSaga(saga);
+            if (!isNil(slice)) {
+                addSlice(slice);
+            }
+            if (!isNil(saga)) {
+                addSaga(saga);
+            }
 
             setRegistered(true);
 
             return () => {
-                !isNil(slice) && removeSlice(slice);
-                !isNil(saga) && removeSaga(saga);
+                if (!isNil(slice)) {
+                    removeSlice(slice);
+                }
+                if (!isNil(saga)) {
+                    removeSaga(saga);
+                }
 
                 setRegistered(false);
             };

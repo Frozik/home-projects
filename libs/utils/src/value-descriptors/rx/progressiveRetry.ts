@@ -3,7 +3,7 @@ import type { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { concat, EMPTY, pipe, timer } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
-import { isSyncedValueDescriptor, isValueDescriptor } from '../value-descriptors';
+import { isSyncedValueDescriptor, isValueDescriptor } from '../utils';
 
 export type TProgressiveRetryConfig<T, TError extends Error> = {
     initialInterval?: number;

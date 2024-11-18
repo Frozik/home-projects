@@ -6,8 +6,7 @@ import type {
     MouseEventHandler,
 } from 'react';
 import { memo } from 'react';
-import type { NavigateOptions } from 'react-router/dist/lib/context';
-import type { To } from 'react-router-dom';
+import type { NavigateOptions, To } from 'react-router-dom';
 import { createPath, useLocation, useNavigate, useResolvedPath } from 'react-router-dom';
 
 import { useFunction } from '../../hooks';
@@ -22,7 +21,6 @@ export const RouteLink = memo(
         target,
         to,
         preventScrollReset,
-        unstable_viewTransition,
         onClick,
         ...restProps
     }: {
@@ -30,10 +28,7 @@ export const RouteLink = memo(
         to: To;
         target?: HTMLAttributeAnchorTarget;
         onClick?: MouseEventHandler;
-    } & Pick<
-        NavigateOptions,
-        'state' | 'replace' | 'preventScrollReset' | 'relative' | 'unstable_viewTransition'
-    > &
+    } & Pick<NavigateOptions, 'state' | 'replace' | 'preventScrollReset' | 'relative'> &
         ComponentProps<typeof Button>) => {
         const navigate = useNavigate();
         const location = useLocation();
@@ -55,7 +50,6 @@ export const RouteLink = memo(
                     state,
                     preventScrollReset,
                     relative,
-                    unstable_viewTransition,
                 });
 
                 onClick?.(event);

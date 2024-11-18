@@ -56,7 +56,7 @@ export async function getDatabaseVersion(databaseName: string): Promise<undefine
         const databases = await self.indexedDB.databases();
         const panelsDatabase = databases.find(({ name }) => name === databaseName);
         return panelsDatabase?.version;
-    } catch (error) {
+    } catch {
         return undefined;
     }
 }

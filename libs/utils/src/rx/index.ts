@@ -5,8 +5,6 @@ export { dedobs } from './dedobs';
 export { finalizeOnlyWithError } from './finalizeOnlyWithError';
 export { finalizeOnlyWithoutError } from './finalizeOnlyWithoutError';
 export { finalizeWithLastValue } from './finalizeWithLastValue';
-export { groupByWithCleanup } from './groupByWithCleanup';
-export { progressiveRetry } from './progressiveRetry';
 export { scanPrevNext } from './scanPrevNext';
 export { shareReplayWithDelayedReset } from './shareReplayWithDelayedReset';
 export { shareReplayWithImmediateReset } from './shareReplayWithImmediateReset';

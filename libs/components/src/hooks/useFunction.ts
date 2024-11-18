@@ -6,6 +6,5 @@ export function useFunction<T extends (...args: any[]) => any>(handler: T): T {
 
     ref.current = handler;
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return useCallback(((...args) => ref.current(...args)) as T, []);
 }

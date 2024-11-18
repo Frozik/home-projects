@@ -1,4 +1,4 @@
-@import "../../../colors.scss";
+@use "../../../colors.scss" as colors;
 
 $field-gap: 4;
 $field-group-gap: 1;
@@ -19,12 +19,12 @@ $field-controls-margin: 10;
   gap: #{$field-gap}px;
   padding: #{$field-gap}px;
   overflow: hidden;
-  background: $gray-11;
+  background: colors.$gray-11;
 
   user-select: none;
 
   &--completed {
-    background: rgba($green-4, 0.5);
+    background: rgba(colors.$green-4, 0.5);
   }
 
   &-group {
@@ -32,35 +32,35 @@ $field-controls-margin: 10;
     gap: #{$field-group-gap}px;
 
     .cell {
-      background: $gray-9;
-      color: $gray-7;
+      background: colors.$gray-9;
+      color: colors.$gray-7;
       display: flex;
 
       cursor: pointer;
 
       &.cell-highlight {
         font-weight: bold;
-        color: $blue-6;
-        text-shadow: 0 0 10px $gray-13;
+        color: colors.$blue-6;
+        text-shadow: 0 0 10px colors.$gray-13;
       }
 
       &.cell--wrong {
-        color: $red-3;
-        text-shadow: 0 0 10px $gray-13;
+        color: colors.$red-3;
+        text-shadow: 0 0 10px colors.$gray-13;
       }
 
       &--fixed {
-        color: $gray-5;
+        color: colors.$gray-5;
 
         cursor: not-allowed;
 
         &.cell-highlight {
-          color: $blue-5;
+          color: colors.$blue-5;
         }
 
         &.cell--wrong {
-          color: $red-5;
-          text-shadow: 0 0 10px $gray-13;
+          color: colors.$red-5;
+          text-shadow: 0 0 10px colors.$gray-13;
         }
       }
 
@@ -74,8 +74,8 @@ $field-controls-margin: 10;
         place-items: center;
 
         .note--selected {
-          color: $blue-6;
-          text-shadow: 0 0 5px $gray-13;
+          color: colors.$blue-6;
+          text-shadow: 0 0 5px colors.$gray-13;
         }
       }
     }
@@ -88,7 +88,7 @@ $field-controls-margin: 10;
   gap: #{$field-gap}px;
   padding: #{$field-gap}px;
   overflow: hidden;
-  background: $gray-11;
+  background: colors.$gray-11;
 
   user-select: none;
 
@@ -99,11 +99,11 @@ $field-controls-margin: 10;
 
     position: relative;
 
-    color: $gray-13;
-    background: $gray-7;
+    color: colors.$gray-13;
+    background: colors.$gray-7;
 
     &:hover {
-      box-shadow: 1px 1px 1px $gray-3, -1px -1px 1px $gray-3;
+      box-shadow: 1px 1px 1px colors.$gray-3, -1px -1px 1px colors.$gray-3;
     }
 
     &-notes {
@@ -112,7 +112,7 @@ $field-controls-margin: 10;
     }
 
     &--selected {
-      background: $gray-5;
+      background: colors.$gray-5;
     }
 
     &:after {
@@ -125,7 +125,7 @@ $field-controls-margin: 10;
       top: 2px;
       right: 2px;
 
-      text-shadow: 0 0 5px $gray-1, 0 0 10px $gray-1;
+      text-shadow: 0 0 5px colors.$gray-1, 0 0 10px colors.$gray-1;
     }
   }
 }

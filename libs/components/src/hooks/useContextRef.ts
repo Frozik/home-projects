@@ -3,7 +3,7 @@ import { assert } from '@frozik/utils';
 import { isNil } from 'lodash-es';
 import { useContext } from 'react';
 
-import { Context } from '../di';
+import { Context } from '../di/context';
 
 export function useContextRef(): TContextRef {
     const { contextId } = useContext(Context);

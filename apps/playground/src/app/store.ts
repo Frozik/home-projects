@@ -8,7 +8,7 @@ import type { Saga } from 'redux-saga';
 import { commonSlice } from './commonSlice';
 import { registerSaga, registerSlice, saga, unregisterSaga, unregisterSlice } from './saga';
 
-export function createStore<TState extends {}>(
+export function createStore<TState extends object>(
     preloadedState?: Partial<TState>,
 ): {
     store: EnhancedStore<TState>;

@@ -13,7 +13,7 @@ export interface IToStructurallyCloneable {
     toStructurallyCloneable(): TStructurallyCloneable;
 }
 
-export interface IFromStructurallyCloneable<T = {}, V = TStructurallyCloneable> {
+export interface IFromStructurallyCloneable<T = object, V = TStructurallyCloneable> {
     fromStructurallyCloneable(json: V): T;
 }
 

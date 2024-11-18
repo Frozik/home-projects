@@ -1,4 +1,4 @@
-@import "../../colors.scss";
+@use "../../colors.scss" as colors;
 
 :global(.ant-tooltip) {
   max-width: unset;
@@ -17,11 +17,11 @@
     height: 100%;
     margin: 0 auto;
 
-    background: $gray-12;
-    border: 1px solid $gray-9;
+    background: colors.$gray-12;
+    border: 1px solid colors.$gray-9;
     border-radius: 10px;
 
-    color: $gray-7;
+    color: colors.$gray-7;
     line-height: 1.5714285714285714;
     font-size: 14px;
 
@@ -33,11 +33,11 @@
     scrollbar-width: none;
 
     &--scroll-top {
-      border-top: 6px solid $blue-10;
+      border-top: 6px solid colors.$blue-10;
     }
 
     &--scroll-bottom {
-      border-bottom: 6px solid $blue-10;
+      border-bottom: 6px solid colors.$blue-10;
     }
 
     &::-webkit-scrollbar {
@@ -64,7 +64,7 @@
   margin: 0 20px 20px 20px;
 
   h1, h2, h3, h4, h5, h6 {
-    color: $gray-1;
+    color: colors.$gray-1;
     margin: 0;
   }
 
@@ -76,7 +76,7 @@
   }
 
   &__title {
-    color: $gray-1;
+    color: colors.$gray-1;
     flex: 0 0 auto;
     margin: 0 20px 4px 20px;
   }
@@ -105,7 +105,7 @@
   }
 
   &--with-title {
-    border-top: 1px solid $gray-9;
+    border-top: 1px solid colors.$gray-9;
     padding-top: 2px;
   }
 }
@@ -153,13 +153,13 @@
 
     padding: 4px 10px;
 
-    background: $gray-13;
+    background: colors.$gray-13;
 
     .company {
       flex: 1 1 auto;
 
       .activity-scope {
-        color: $gray-7;
+        color: colors.$gray-7;
 
         ul {
           padding-left: 20px;
@@ -171,7 +171,7 @@
       }
 
       a {
-        color: $gray-1;
+        color: colors.$gray-1;
         text-decoration: none;
       }
     }
@@ -186,11 +186,11 @@
   }
 
   .description {
-    border-left: 4px solid $blue-8;
+    border-left: 4px solid colors.$blue-8;
     padding: 8px 10px;
 
     a {
-      color: $blue-6;
+      color: colors.$blue-6;
     }
 
     ul {

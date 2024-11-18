@@ -2,7 +2,7 @@ import type { DBSchema, IDBPDatabase } from 'idb';
 import type { MonoTypeOperatorFunction } from 'rxjs';
 import { Observable } from 'rxjs';
 
-import { progressiveRetry } from './progressiveRetry';
+import { progressiveRetry } from '../value-descriptors';
 
 export enum EDatabaseErrorCallbackType {
     Blocked = 'Blocked',

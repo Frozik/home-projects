@@ -70,7 +70,9 @@ function getObsCacheFactory<TObservable extends Observable<unknown>>(
         const cache = mapKeyToCache.get(key);
         if (cache !== undefined) {
             cache.refCount--;
-            cache.refCount === 0 && removeCache(key);
+            if (cache.refCount === 0) {
+                removeCache(key);
+            }
         }
     };
     const createCache = (key: TKey, obs: TObservable) => {

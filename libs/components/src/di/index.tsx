@@ -1,10 +1,7 @@
 import type { TContextRef } from '@frozik/utils';
 import type { ReactElement, ReactNode } from 'react';
-import { createContext } from 'react';
 
-export const Context = createContext<{ contextId: undefined | TContextRef }>({
-    contextId: undefined,
-});
+import { Context } from './context';
 
 interface IDIProviderProps {
     context: TContextRef;

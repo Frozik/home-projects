@@ -9,6 +9,7 @@ export { extractValueDescriptorFromError } from './extractValueDescriptorFromErr
 export { failToError } from './failToError';
 export { mapValueDescriptor } from './mapValueDescriptor';
 export { mergeMapValueDescriptor } from './mergeMapValueDescriptor';
+export { progressiveRetry } from './progressiveRetry';
 export { progressiveRetryValueDescriptor } from './progressiveRetryValueDescriptor';
 export { scanValueDescriptor } from './scanValueDescriptor';
 export { squashValueDescriptors } from './squashValueDescriptors';

@@ -56,7 +56,9 @@ function* injectSaga(
     yield call([sagaCounterMap, 'set'], saga, counter + 1);
 
     if (counter === 0) {
-        development && console.info(`Registering new saga: ${saga.name}`);
+        if (development) {
+            console.info(`Registering new saga: ${saga.name}`);
+        }
 
         const task: Task = yield fork(saga, getModule);
 
@@ -79,7 +81,9 @@ function* disposeSaga(
     const newCounter = counter - 1;
 
     if (newCounter === 0) {
-        development && console.info(`Unregistering saga: ${saga.name}`);
+        if (development) {
+            console.info(`Unregistering saga: ${saga.name}`);
+        }
 
         yield cancel(task);
 
@@ -101,7 +105,9 @@ function* injectSlice(
     yield call([sliceCounterMap, 'set'], slice, counter + 1);
 
     if (counter === 0) {
-        development && console.info(`Registering new slice: ${slice.name}`);
+        if (development) {
+            console.info(`Registering new slice: ${slice.name}`);
+        }
 
         const combinedReducer: Reducer = yield call(
             combineSlices,
@@ -125,7 +131,9 @@ function* disposeSlice(
     const newCounter = counter - 1;
 
     if (newCounter === 0) {
-        development && console.info(`Unregistering slice: ${slice.name}`);
+        if (development) {
+            console.info(`Unregistering slice: ${slice.name}`);
+        }
 
         yield call([sliceCounterMap, 'delete'], slice);
 

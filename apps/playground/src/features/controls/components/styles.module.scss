@@ -1,8 +1,8 @@
-@import "../../../colors.scss";
+@use "../../../colors.scss" as colors;
 
 .page {
   padding: 0 40px;
-  color: $gray-1;
+  color: colors.$gray-1;
 
   &:not(:last-child) {
     margin-bottom: 40px;
@@ -19,14 +19,14 @@
 }
 
 .editor {
-  background: $grey-11;
+  background: colors.$grey-11;
   border-width: 1px;
   border-style: solid;
-  border-color: $grey-7;
+  border-color: colors.$grey-7;
   box-sizing: border-box;
   margin: 0;
   padding: 4px 11px;
-  color: $gray-1;
+  color: colors.$gray-1;
   font-size: 14px;
   line-height: 22px;
   list-style: none;
@@ -39,15 +39,15 @@
   transition: all 0.2s;
 
   &:hover {
-    border-color: $blue-5;
-    background-color: $grey-13;
+    border-color: colors.$blue-5;
+    background-color: colors.$grey-13;
   }
 
   &:focus, &:focus-within {
-    border-color: $blue-6;
+    border-color: colors.$blue-6;
     box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
     outline: 0;
-    background-color: $grey-13;
+    background-color: colors.$grey-13;
   }
 }
 
@@ -65,7 +65,7 @@
 }
 
 .placeholder {
-  color: $grey-7;
+  color: colors.$grey-7;
 }
 
 .calendar {
@@ -73,7 +73,7 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
 
-  background-color: $grey-11;
+  background-color: colors.$grey-11;
   padding: 4px;
 }
 
@@ -91,41 +91,41 @@
 
   cursor: pointer;
 
-  color: $grey-6;
+  color: colors.$grey-6;
 
   border-radius: 4px;
 
   &--today {
     font-weight: bold;
-    color: $grey-1;
+    color: colors.$grey-1;
   }
 
   &:hover:not(#\9) {
-    background-color: $blue-5;
+    background-color: colors.$blue-5;
   }
 
   &--selected {
-    background-color: rgba($blue-5, 0.7);
+    background-color: rgba(colors.$blue-5, 0.7);
   }
 
   &--weekend {
-    background-color: rgba($red-10, 0.5);
+    background-color: rgba(colors.$red-10, 0.5);
 
     &.calendar-day-cell--selected {
-      background-color: rgba($red-6, 0.5);
+      background-color: rgba(colors.$red-6, 0.5);
     }
   }
 
   &--tenor {
-    border-color: $green-8;
+    border-color: colors.$green-8;
   }
 
   &--overflow {
     pointer-events: none;
-    color: $grey-8;
+    color: colors.$grey-8;
 
     &.calendar-day-cell--selected, &.calendar-day-cell--today {
-      color: $grey-6;
+      color: colors.$grey-6;
     }
   }
 

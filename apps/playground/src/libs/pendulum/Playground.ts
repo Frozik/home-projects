@@ -104,9 +104,13 @@ export class Playground {
 
             if (result !== false) {
                 playersWithScore.forEach(({ player }) => {
-                    result.every((item) =>
-                        'player' in item ? item.player !== player : item !== player,
-                    ) && player.dispose();
+                    if (
+                        result.every((item) =>
+                            'player' in item ? item.player !== player : item !== player,
+                        )
+                    ) {
+                        player.dispose();
+                    }
                 });
 
                 for (const item of result) {

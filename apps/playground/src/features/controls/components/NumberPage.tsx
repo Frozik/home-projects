@@ -34,10 +34,10 @@ export const NumberPage = memo(() => {
             <div className={styles.controls}>
                 <p>
                     Numeric input control. It provides the ability to specify the number of
-                    significant digits in fraction part and features highlighting mechanism for
-                    significant digits. This is particularly useful for controls used in the input
-                    and display of conversion rates. <strong>K</strong>, <strong>M</strong>,{' '}
-                    <strong>B</strong> suffixes are supported.
+                    significant digits in fraction part and PIP highlighting. This is particularly
+                    useful for controls used in the input and display of conversion rates.{' '}
+                    <strong>K</strong>, <strong>M</strong>, <strong>B</strong> suffixes are
+                    supported.
                 </p>
                 <h4>PIP start + size</h4>
                 <Slider range min={-2} max={6} step={1} value={value} onChange={setValue} />

@@ -7,7 +7,7 @@ export function parseJson<T>(json: string | null): T | undefined {
 
     try {
         return JSON.parse(json) as T;
-    } catch (e) {
+    } catch {
         return undefined;
     }
 }

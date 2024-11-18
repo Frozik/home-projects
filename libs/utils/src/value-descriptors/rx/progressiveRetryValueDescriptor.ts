@@ -1,12 +1,12 @@
 import type { MonoTypeOperatorFunction } from 'rxjs';
 import { of } from 'rxjs';
 
-import { progressiveRetry } from '../../rx';
-import type { TProgressiveRetryConfig } from '../../rx/progressiveRetry';
 import type { TAnyValueDescriptor } from '../defs';
 import { convertErrorToFail } from '../fails';
 import type { ValueDescriptorError } from '../fails/error';
 import { createUnsyncedValueDescriptor } from '../utils';
+import type { TProgressiveRetryConfig } from './progressiveRetry';
+import { progressiveRetry } from './progressiveRetry';
 
 export function progressiveRetryValueDescriptor<
     T extends TAnyValueDescriptor,

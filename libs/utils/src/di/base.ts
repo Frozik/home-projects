@@ -31,7 +31,7 @@ function getContextContainer(ref: TContextRef): TContextContainer {
         return contextContainer;
     }
 
-    const newContextContainer = new WeakMap<Function, unknown>();
+    const newContextContainer = new WeakMap<VoidFunction, unknown>();
 
     contextsContainers.set(ref, newContextContainer);
 

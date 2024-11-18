@@ -33,14 +33,14 @@ export function useWakeLock({ onError, onRequest, onRelease }: IWakeLockOptions 
                 wakeLock.current.onrelease = (e: Event) => {
                     // Default to `true` - `released` API is experimental: https://caniuse.com/mdn-api_wakelocksentinel_released
                     setReleased((wakeLock.current && wakeLock.current.released) || true);
-                    onRelease && onRelease(e);
+                    onRelease?.(e);
                     wakeLock.current = null;
                 };
 
-                onRequest && onRequest();
+                onRequest?.();
                 setReleased((wakeLock.current && wakeLock.current.released) || false);
             } catch (error) {
-                onError && onError(error as Error);
+                onError?.(error as Error);
             }
         },
         [isSupported, onRequest, onError, onRelease],
@@ -58,7 +58,7 @@ export function useWakeLock({ onError, onRequest, onRelease }: IWakeLockOptions 
             return console.warn('Calling `release` before `request` has no effect.');
         }
 
-        wakeLock.current && (await wakeLock.current.release());
+        await wakeLock.current?.release();
     }, [isSupported]);
 
     return {
