@@ -43,8 +43,10 @@ Example of plotting charts on the GPU
 * Gradient coloring
 * Rounded segment endings
 
-
-## [Missing] Financial controls: Calendar with Tenors (With nanoseconds and timezone support)
-## [Missing] Face detection from camera + effects
-## [Missing] Bug reporting
-## [Missing] Chart opacity
+## Charts Missing
+* Financial controls: Calendar with Tenors (With nanoseconds and timezone support)
+* Face detection from camera + effects
+* Bug reporting
+* Chart opacity
+* PWA
+* React Server Components

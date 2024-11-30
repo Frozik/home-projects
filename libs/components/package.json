@@ -15,7 +15,7 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "coverage": "jest --coverage --passWithNoTests",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "lint": "TIMING=1 eslint . --report-unused-disable-directives --max-warnings 0",
     "types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
