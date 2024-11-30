@@ -14,7 +14,7 @@ export const Sun = memo(() => {
                 scene={{ background: new Color('#262626') }}
             >
                 <SunMesh />
-                <OrbitControls />
+                <OrbitControls minDistance={5} maxDistance={20} />
             </Canvas>
         </div>
     );
