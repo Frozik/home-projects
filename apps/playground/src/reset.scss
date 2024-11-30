@@ -2,8 +2,8 @@ html, body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
+  font-size: 100%;
   vertical-align: baseline;
   overscroll-behavior: none;
 }
@@ -26,9 +26,8 @@ blockquote, q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
+blockquote::before, blockquote::after,
+q::before, q::after {
   content: none;
 }
 

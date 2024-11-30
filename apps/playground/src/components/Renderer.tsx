@@ -37,17 +37,12 @@ export const Renderer = memo(
         return (
             <div className={cn(className)}>
                 <canvas
-                    className={styles.canvasContainerCanvas}
+                    className={styles.canvas}
                     ref={staticCanvasRef}
                     width={width}
                     height={height}
                 />
-                <canvas
-                    className={styles.canvasContainerCanvas}
-                    ref={canvasRef}
-                    width={width}
-                    height={height}
-                />
+                <canvas className={styles.canvas} ref={canvasRef} width={width} height={height} />
             </div>
         );
     },

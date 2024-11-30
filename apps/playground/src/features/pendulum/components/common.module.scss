@@ -5,8 +5,7 @@
   align-items: center;
   justify-content: center;
   overflow: auto;
-
-  background: #000000;
+  background: #000;
 }
 
 .left-aligned {
@@ -21,10 +20,7 @@
 
   &__child-fill {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    inset: 0;
     overflow: hidden;
   }
 }
@@ -34,12 +30,10 @@
   top: 16px;
   left: 16px;
   z-index: 1;
-
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   gap: 8px;
-
   color: white;
 
   &__icon {
@@ -52,13 +46,11 @@
 
   &__close {
     color: #ff7875;
-
     display: none;
   }
 
   &:hover {
     cursor: pointer;
-
     color: #ff7875;
 
     .description__close {

@@ -9,7 +9,6 @@ $field-controls-margin: 10;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 100%;
   height: 100%;
 }
@@ -20,7 +19,6 @@ $field-controls-margin: 10;
   padding: #{$field-gap}px;
   overflow: hidden;
   background: colors.$gray-11;
-
   user-select: none;
 
   &--completed {
@@ -35,7 +33,6 @@ $field-controls-margin: 10;
       background: colors.$gray-9;
       color: colors.$gray-7;
       display: flex;
-
       cursor: pointer;
 
       &.cell-highlight {
@@ -51,7 +48,6 @@ $field-controls-margin: 10;
 
       &--fixed {
         color: colors.$gray-5;
-
         cursor: not-allowed;
 
         &.cell-highlight {
@@ -89,16 +85,13 @@ $field-controls-margin: 10;
   padding: #{$field-gap}px;
   overflow: hidden;
   background: colors.$gray-11;
-
   user-select: none;
 
   .control-item {
     display: flex;
     align-items: center;
     justify-content: center;
-
     position: relative;
-
     color: colors.$gray-13;
     background: colors.$gray-7;
 
@@ -115,16 +108,12 @@ $field-controls-margin: 10;
       background: colors.$gray-5;
     }
 
-    &:after {
+    &::after {
       content: attr(data-used);
-
       font-size: 40%;
-
       position: absolute;
-
       top: 2px;
       right: 2px;
-
       text-shadow: 0 0 5px colors.$gray-1, 0 0 10px colors.$gray-1;
     }
   }

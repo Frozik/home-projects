@@ -65,7 +65,8 @@ export default [{
 
         "import/no-unresolved": "off",
         "import/no-default-export": "error",
-        // "import/no-cycle": "error",
+        // https://stackoverflow.com/questions/38458067/which-eslint-rules-in-my-config-are-slow
+        "import/no-cycle": "error",
         "unused-imports/no-unused-imports": "error",
         "simple-import-sort/imports": "error",
         "@typescript-eslint/no-unused-vars": "error",

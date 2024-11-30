@@ -22,7 +22,7 @@
     cursor: default;
     color: var(--text-color);
 
-    &:before {
+    &::before {
         content: '> ';
     }
 }
@@ -30,7 +30,7 @@
 .link-description {
     margin-left: 20px;
     padding-left: 8px;
-    border-left: 2px solid rgba(255, 255, 255, 0.45);
+    border-left: 2px solid rgb(255 255 255 / 45%);
 }
 
 .not-for-mobile-marker {
