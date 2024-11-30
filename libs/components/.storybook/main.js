@@ -17,32 +17,23 @@ const config = {
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/addon-interactions'),
-    {
-      name: getAbsolutePath('@storybook/addon-styling-webpack'),
-      options: {
-        rules: [
-          // Replaces any existing Sass rules with given rules
-          {
-            test: /\.s[ac]ss$/i,
-            use: [
-              "style-loader",
-              "css-loader",
-              {
-                loader: "sass-loader",
-                options: {
-                  implementation: require.resolve("sass"),
-                  classnameTransform: "camelCaseOnly"
-                }
-              },
-            ],
-          },
-        ]
-      }
-    },
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
+  viteFinal: async (config) => ({
+    ...config,
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+      modules: {
+        localsConvention: 'camelCaseOnly',
+      },
+    },
+  })
 };
 export default config;
