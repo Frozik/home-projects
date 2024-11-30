@@ -1,6 +1,7 @@
 import { isEmpty, isNil } from 'lodash-es';
 
 import type { ISelection } from './defs';
+import styles from './styles.module.scss';
 
 export function inputElementSelectionWithValue({
     newValue,
@@ -95,16 +96,10 @@ export function numericTextToHtmlBuilder({
     decimal,
     pipStart,
     pipSize = 2,
-    startGroupClassName,
-    endGroupClassName,
-    pipClassName,
 }: {
     decimal?: number;
     pipStart?: number;
     pipSize?: number;
-    startGroupClassName?: string;
-    endGroupClassName?: string;
-    pipClassName?: string;
 }): (text: string, editing: boolean) => string {
     return function rateTextToHtml(text: string, editing: boolean): string {
         if (isEmpty(text)) {
@@ -152,33 +147,27 @@ export function numericTextToHtmlBuilder({
         }
 
         function getEndGroupClassName(position: number): string {
-            return isNil(endGroupClassName) ||
-                Number.isNaN(position) ||
-                position < 0 ||
-                position % 3 !== 0 ||
-                position === 0
+            return Number.isNaN(position) || position < 0 || position % 3 !== 0 || position === 0
                 ? ''
-                : endGroupClassName;
+                : styles.groupEnd;
         }
 
         function getStartGroupClassName(position: number): string {
-            return isNil(startGroupClassName) ||
-                Number.isNaN(position) ||
+            return Number.isNaN(position) ||
                 position < 0 ||
                 position % 3 !== 2 ||
                 position === startPositionCount
                 ? ''
-                : startGroupClassName;
+                : styles.groupStart;
         }
 
         function getPipClassName(position: number): string {
-            return isNil(pipClassName) ||
-                isNil(pipStart) ||
+            return isNil(pipStart) ||
                 Number.isNaN(position) ||
                 position > -pipStart ||
                 position < -(pipStart + pipSize - 1)
                 ? ''
-                : pipClassName;
+                : styles.pip;
         }
 
         return lettersMap

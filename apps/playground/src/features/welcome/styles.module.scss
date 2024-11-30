@@ -1,4 +1,4 @@
-@use "../../colors.scss" as colors;
+@use "@frozik/components/styles/colors.scss" as colors;
 
 :global(.ant-tooltip) {
   max-width: unset;

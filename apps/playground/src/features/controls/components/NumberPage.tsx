@@ -20,14 +20,9 @@ export const NumberPage = memo(() => {
         <div className={styles.page}>
             <h3>Rate/Amount/Number Control</h3>
             <NumericEditor
-                className={styles.editor}
                 decimal={decimals}
                 pipStart={pipStart}
                 pipSize={pipSize}
-                startGroupClassName={styles.groupStart}
-                endGroupClassName={styles.groupEnd}
-                pipClassName={styles.pip}
-                placeholderClassName={styles.placeholder}
                 allowNegative
                 placeholder="Enter conversion rate"
             />

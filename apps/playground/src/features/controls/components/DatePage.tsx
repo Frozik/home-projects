@@ -5,7 +5,6 @@ import { createSyncedValueDescriptor } from '@frozik/utils';
 import { Temporal } from '@js-temporal/polyfill';
 import { Dropdown } from 'antd';
 import cn from 'classnames';
-import { isEmpty, isNil } from 'lodash-es';
 import { memo, useState } from 'react';
 
 import styles from './styles.module.scss';
@@ -14,14 +13,7 @@ export const DatePage = memo(() => {
     return (
         <div className={styles.page}>
             <h3>DatePicker Control</h3>
-            <DateEditor
-                className={styles.editor}
-                startGroupClassName={styles.groupStart}
-                endGroupClassName={styles.groupEnd}
-                pipClassName={styles.pip}
-                placeholderClassName={styles.placeholder}
-                placeholder="Enter conversion rate"
-            />
+            <DateEditor className={styles.editor} placeholder="Enter conversion rate" />
             <div className={styles.controls}></div>
         </div>
     );
@@ -30,16 +22,10 @@ export const DatePage = memo(() => {
 export const DateEditor = memo(
     ({
         className,
-        placeholder,
         // timeZone,
-        placeholderClassName,
     }: {
         className?: string;
         placeholder?: string;
-        startGroupClassName?: string;
-        endGroupClassName?: string;
-        pipClassName?: string;
-        placeholderClassName?: string;
     }) => {
         const [focused, setFocused] = useState(false);
 
@@ -98,15 +84,7 @@ export const DateEditor = memo(
                         />
                     )}
                 >
-                    <RichEditor
-                        className={cn(className)}
-                        placeholder={
-                            isNil(placeholderClassName) || isEmpty(placeholderClassName.trim())
-                                ? placeholder
-                                : `<span class="${placeholderClassName}">${placeholder}</span>`
-                        }
-                        onFocusChanges={setFocused}
-                    />
+                    <RichEditor className={cn(className)} onFocusChanges={setFocused} />
                 </Dropdown>
             </>
         );

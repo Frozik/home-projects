@@ -6,8 +6,10 @@ import {
 } from '@frozik/components';
 import { trim } from '@frozik/utils';
 import cn from 'classnames';
-import { isEmpty, isNil } from 'lodash-es';
+import { isNil } from 'lodash-es';
 import { memo, useEffect, useMemo, useState } from 'react';
+
+import styles from './styles.module.scss';
 
 export const NumericEditor = memo(
     ({
@@ -17,10 +19,6 @@ export const NumericEditor = memo(
         pipSize = 2,
         allowNegative = false,
         placeholder,
-        startGroupClassName,
-        endGroupClassName,
-        pipClassName,
-        placeholderClassName,
     }: {
         className?: string;
         decimal?: number;
@@ -28,10 +26,6 @@ export const NumericEditor = memo(
         pipSize?: number;
         allowNegative?: boolean;
         placeholder?: string;
-        startGroupClassName?: string;
-        endGroupClassName?: string;
-        pipClassName?: string;
-        placeholderClassName?: string;
     }) => {
         const allowedDecimals = useMemo(
             () => (isNil(decimal) ? decimal : Math.max(decimal, 0)),
@@ -52,18 +46,8 @@ export const NumericEditor = memo(
                     decimal: allowedDecimals,
                     pipStart,
                     pipSize,
-                    startGroupClassName,
-                    endGroupClassName,
-                    pipClassName,
                 }),
-            [
-                allowedDecimals,
-                pipStart,
-                pipSize,
-                startGroupClassName,
-                endGroupClassName,
-                pipClassName,
-            ],
+            [allowedDecimals, pipStart, pipSize],
         );
 
         const handleFocusChanges = useFunction((focused: boolean) => {
@@ -93,15 +77,11 @@ export const NumericEditor = memo(
 
         return (
             <RichEditor
-                className={cn(className)}
+                className={cn(styles.editor, className)}
                 onGetElementSelectionWithValue={handleElementSelectionWithValue}
                 onTextToHtml={handleTextToHtml}
                 value={value}
-                placeholder={
-                    isNil(placeholderClassName) || isEmpty(placeholderClassName.trim())
-                        ? placeholder
-                        : `<span class="${placeholderClassName}">${placeholder}</span>`
-                }
+                placeholder={`<span class="${styles.placeholder}">${placeholder}</span>`}
                 onValueChanged={setValue}
                 onFocusChanges={handleFocusChanges}
             />
