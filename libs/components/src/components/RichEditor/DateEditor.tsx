@@ -1,4 +1,4 @@
-import { DateSelector, RichEditor } from '@frozik/components';
+import { RichEditor } from '@frozik/components';
 import type { TenorDate } from '@frozik/types';
 import { createSyncedValueDescriptor, type TValueDescriptor } from '@frozik/utils';
 import { Temporal } from '@js-temporal/polyfill';
@@ -6,6 +6,7 @@ import { Dropdown } from 'antd';
 import cn from 'classnames';
 import { memo, useState } from 'react';
 
+import { DateSelector } from './components/DateSelector';
 import styles from './styles.module.scss';
 
 export const DateEditor = memo(
