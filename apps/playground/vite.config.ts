@@ -30,4 +30,7 @@ export default defineConfig({
             localsConvention: 'camelCaseOnly',
         },
     },
+    server: {
+        host: '0.0.0.0'
+    }
 });
