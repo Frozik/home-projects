@@ -13,6 +13,7 @@ const rootRouter = createHashRouter(
             path: '/',
             element: <Root />,
             errorElement: <ErrorPage />,
+            hydrateFallbackElement: <OverlayLoader />,
             children: [
                 {
                     index: true,
@@ -25,6 +26,7 @@ const rootRouter = createHashRouter(
                             <OverlayLoader />
                         </PageInjector>
                     ),
+                    hydrateFallbackElement: <OverlayLoader />,
                 },
                 {
                     path: 'pendulum/:robotId?',
@@ -43,6 +45,7 @@ const rootRouter = createHashRouter(
                             <OverlayLoader />
                         </PageInjector>
                     ),
+                    hydrateFallbackElement: <OverlayLoader />,
                 },
                 {
                     path: 'sudoku/:puzzle?',
@@ -59,6 +62,7 @@ const rootRouter = createHashRouter(
                             <OverlayLoader />
                         </PageInjector>
                     ),
+                    hydrateFallbackElement: <OverlayLoader />,
                 },
                 {
                     path: 'sun',
@@ -69,6 +73,7 @@ const rootRouter = createHashRouter(
                             <OverlayLoader />
                         </PageInjector>
                     ),
+                    hydrateFallbackElement: <OverlayLoader />,
                 },
                 {
                     path: 'charts',
@@ -81,6 +86,7 @@ const rootRouter = createHashRouter(
                             <OverlayLoader />
                         </PageInjector>
                     ),
+                    hydrateFallbackElement: <OverlayLoader />,
                 },
                 {
                     path: 'controls',
@@ -93,6 +99,7 @@ const rootRouter = createHashRouter(
                             <OverlayLoader />
                         </PageInjector>
                     ),
+                    hydrateFallbackElement: <OverlayLoader />,
                 },
             ],
         },
@@ -103,5 +110,5 @@ const rootRouter = createHashRouter(
 );
 
 export const Application = memo(() => {
-    return <RouterProvider router={rootRouter} fallbackElement={<OverlayLoader />} />;
+    return <RouterProvider router={rootRouter} />;
 });

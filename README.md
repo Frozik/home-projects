@@ -46,7 +46,7 @@ Example of plotting charts on the GPU
 ## Plans
 * Financial controls: Calendar with Tenors (With nanoseconds and timezone support)
 * Face detection from camera + effects
-* Bug reporting
+* Bug reporting (Record video/screenshot without sensitive data, logs, performance metrics etc.)
 * Chart opacity
 * PWA
 * React Server Components

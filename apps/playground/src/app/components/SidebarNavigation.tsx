@@ -2,10 +2,10 @@ import { MenuOutlined } from '@ant-design/icons';
 import AntdIcon from '@ant-design/icons/lib/components/AntdIcon';
 import { RouteNavLink, useFunction } from '@frozik/components';
 import type { UnknownAction } from '@reduxjs/toolkit';
-import { useToggle } from '@uidotdev/usehooks';
 import { Drawer, FloatButton, Tag, Tooltip } from 'antd';
 import { isEmpty, isNil } from 'lodash-es';
 import { memo } from 'react';
+import { useToggle } from 'usehooks-ts';
 
 import type { IAction } from '../commonSlice';
 import { selectMenuActions } from '../commonSlice';
