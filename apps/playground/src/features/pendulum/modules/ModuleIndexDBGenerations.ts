@@ -80,7 +80,7 @@ export const ModuleIndexDBGenerations = ModuleFactory(async () => {
 
     const database$ = dedobs(
         () =>
-            createDatabase$(createGenerationDB).pipe(
+            createDatabase$<IDBCompetitions>(createGenerationDB).pipe(
                 databaseReconnect(),
                 switchMap((database) =>
                     merge(
